@@ -30,6 +30,9 @@ namespace ilift {
         /// <summary>The Button module using socket 8 of the mainboard.</summary>
         private Gadgeteer.Modules.GHIElectronics.Button button;
         
+        /// <summary>The WiFi RS21 module using socket 9 of the mainboard.</summary>
+        private Gadgeteer.Modules.GHIElectronics.WiFiRS21 wifiRS21;
+        
         /// <summary>This property provides access to the Mainboard API. This is normally not necessary for an end user program.</summary>
         protected new static GHIElectronics.Gadgeteer.FEZSpider Mainboard {
             get {
@@ -57,6 +60,7 @@ namespace ilift {
             this.displayTE35 = new GTM.GHIElectronics.DisplayTE35(14, 13, 12, 10);
             this.rfidReader = new GTM.GHIElectronics.RFIDReader(11);
             this.button = new GTM.GHIElectronics.Button(8);
+            this.wifiRS21 = new GTM.GHIElectronics.WiFiRS21(9);
         }
     }
 }

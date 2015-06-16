@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Threading;
+using GHI.Networking;
+using ilift.Model;
+using Json.NETMF;
 using Microsoft.SPOT;
 using Microsoft.SPOT.Presentation;
 using Microsoft.SPOT.Presentation.Controls;
@@ -42,9 +45,43 @@ namespace ilift
             //    };
             // Use Debug.Print to show messages in Visual Studio's "Output" window during debugging.
             Debug.Print("Program Started");
-
             this.rfidReader.IdReceived += this.rfidReader_IdReceived;
             this.rfidReader.MalformedIdReceived += this.rfidReader_MalformedIdReceived;
+            //Debug.Print(wifiRS21.NetworkSettings.IPAddress);
+            wifiRS21.NetworkInterface.Open();
+            ArrayList list = new ArrayList();
+            WiFiRS9110.NetworkParameters[] results = wifiRS21.NetworkInterface.Scan();
+
+            foreach (var netInterface in results)
+            {
+                if (netInterface.Ssid.Equals("AndroidAP"))
+                {
+                    netInterface.Key = "tk3-umundo";
+                    wifiRS21.NetworkInterface.Join(netInterface);
+                    Debug.Print("NetworkCOnnected:" + wifiRS21.IsNetworkConnected);
+                    wifiRS21.NetworkUp += WifiRs21OnNetworkUp;
+                }
+                Debug.Print(netInterface.Ssid);
+            }
+
+        }
+
+        private void WifiRs21OnNetworkUp(GTM.Module.NetworkModule sender, GTM.Module.NetworkModule.NetworkState state)
+        {
+            Debug.Print("Now we are Network UP");
+            Gadgeteer.Networking.HttpRequest wc = WebClient.GetFromWeb("http://192.168.43.181:8080/ilift/user/byUsername/satiaherfert");
+            wc.ResponseReceived += Target;
+        }
+
+        private void Target(HttpRequest sender, HttpResponse response)
+        {
+            Debug.Print(response.Text);
+
+            Hashtable hashTable = JsonSerializer.DeserializeString(response.Text) as Hashtable;
+            Debug.Print(hashTable[""] + " " + hashTable["lastName"]);
+            //User user = JsonConvert.DeserializeObject<User>(response.Text);
+            //Debug.Print("Users name" + user.username);
+
         }
 
         private void rfidReader_IdReceived(RFIDReader sender, string e)
