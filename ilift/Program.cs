@@ -11,11 +11,15 @@ using Microsoft.SPOT.Touch;
 using Gadgeteer.Networking;
 using GT = Gadgeteer;
 using GTM = Gadgeteer.Modules;
+using Gadgeteer.Modules.GHIElectronics;
+
+using ilift.Patterns;
 
 namespace ilift
 {
     public partial class Program
     {
+        BicepCurl bicepCurlPattern = new BicepCurl();
         // This method is run when the mainboard is powered up or reset.   
         void ProgramStarted()
         {
@@ -31,10 +35,37 @@ namespace ilift
                 timer.Tick +=<tab><tab>
                 timer.Start();
             *******************************************************************************************/
-
-
+            button.ButtonPressed += new GTM.GHIElectronics.Button.ButtonEventHandler(button_ButtonPressed);
+            accelerometer.MeasurementInterval = new TimeSpan(0, 0, 0, 0, 100);
+            accelerometer.MeasurementComplete += new 
+                GTM.GHIElectronics.Accelerometer.MeasurementCompleteEventHandler(accelerometer_MeasurementComplete);
+            compass.MeasurementInterval = new TimeSpan(0, 0, 0, 1);
+            compass.MeasurementComplete += new 
+                GTM.GHIElectronics.Compass.MeasurementCompleteEventHandler(compass_MeasurementComplete);
+            
             // Use Debug.Print to show messages in Visual Studio's "Output" window during debugging.
             Debug.Print("Program Started");
+        }
+
+        void compass_MeasurementComplete(GTM.GHIElectronics.Compass sender, 
+            GTM.GHIElectronics.Compass.MeasurementCompleteEventArgs e)
+        {
+            //Debug.Print("Compass:\tx: " + e.X + "\ty: " + e.Y + "\tz: " + e.Z + "\n");
+        }
+
+        void button_ButtonPressed(GTM.GHIElectronics.Button sender, GTM.GHIElectronics.Button.ButtonState state)
+        {
+            compass.StartTakingMeasurements();
+
+            accelerometer.Calibrate();
+            accelerometer.StartTakingMeasurements();
+        }
+
+        void accelerometer_MeasurementComplete(
+            GTM.GHIElectronics.Accelerometer sender, 
+            GTM.GHIElectronics.Accelerometer.MeasurementCompleteEventArgs e)
+        {
+            bicepCurlPattern.processAccelData(e.X, e.Y, e.Z);
         }
     }
 }
