@@ -11,6 +11,7 @@ using Microsoft.SPOT.Touch;
 using Gadgeteer.Networking;
 using GT = Gadgeteer;
 using GTM = Gadgeteer.Modules;
+using Gadgeteer.Modules.GHIElectronics;
 
 namespace ilift
 {
@@ -31,10 +32,29 @@ namespace ilift
                 timer.Tick +=<tab><tab>
                 timer.Start();
             *******************************************************************************************/
-
-
+            //accelerometer.MeasurementInterval = new TimeSpan(0,0,0,200);
+            //accelerometer.MeasurementComplete +=
+            //    delegate(Accelerometer sender, Accelerometer.MeasurementCompleteEventArgs args)
+            //    {
+            //        Debug.Print("X value " + args.X);
+            //        Debug.Print("Y value " + args.Y);
+            //        Debug.Print("Z value " + args.Z);
+            //    };
             // Use Debug.Print to show messages in Visual Studio's "Output" window during debugging.
             Debug.Print("Program Started");
+
+            this.rfidReader.IdReceived += this.rfidReader_IdReceived;
+            this.rfidReader.MalformedIdReceived += this.rfidReader_MalformedIdReceived;
+        }
+
+        private void rfidReader_IdReceived(RFIDReader sender, string e)
+        {
+            Debug.Print("RFID scanned: " + e);
+        }
+
+        private void rfidReader_MalformedIdReceived(RFIDReader sender, EventArgs e)
+        {
+            Debug.Print("Please rescan your card");
         }
     }
 }
