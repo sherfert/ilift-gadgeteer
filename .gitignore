@@ -1,0 +1,4 @@
+ilift/bin/*
+ilift/obj/*
+*.user
+*.suo
