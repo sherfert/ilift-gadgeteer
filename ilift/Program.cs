@@ -19,7 +19,7 @@ namespace ilift
 {
     public partial class Program
     {
-        BicepCurl bicepCurlPattern = new BicepCurl();
+        BicepCurlPattern bicepCurlPattern;
         // This method is run when the mainboard is powered up or reset.   
         void ProgramStarted()
         {
@@ -42,9 +42,17 @@ namespace ilift
             compass.MeasurementInterval = new TimeSpan(0, 0, 0, 1);
             compass.MeasurementComplete += new 
                 GTM.GHIElectronics.Compass.MeasurementCompleteEventHandler(compass_MeasurementComplete);
+
+            bicepCurlPattern = new BicepCurlPattern();
+            bicepCurlPattern.onActionDone += bicepCurlPattern_onActionDone;
             
             // Use Debug.Print to show messages in Visual Studio's "Output" window during debugging.
             Debug.Print("Program Started");
+        }
+
+        void bicepCurlPattern_onActionDone()
+        {
+            Debug.Print("Repetition Done!");
         }
 
         void compass_MeasurementComplete(GTM.GHIElectronics.Compass sender, 
@@ -55,10 +63,11 @@ namespace ilift
 
         void button_ButtonPressed(GTM.GHIElectronics.Button sender, GTM.GHIElectronics.Button.ButtonState state)
         {
-            compass.StartTakingMeasurements();
+            //compass.StartTakingMeasurements();
 
             accelerometer.Calibrate();
             accelerometer.StartTakingMeasurements();
+            Debug.Print("Calibrated");
         }
 
         void accelerometer_MeasurementComplete(
