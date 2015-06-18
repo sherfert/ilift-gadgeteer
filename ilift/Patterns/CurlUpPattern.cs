@@ -15,7 +15,7 @@ namespace ilift.Patterns
             if (z < 1.1 && y < 0.2 && x < 0.08 && x > -0.08)
             {
                 Debug.Print("Up!!!");
-                Debug.Print("Accelerometer:\tx: " + x + "\ty: " + y + "\tz: " + z + "\n");
+                //Debug.Print("Accelerometer:\tx: " + x + "\ty: " + y + "\tz: " + z + "\n");
                 onActionDone();
                 
             }

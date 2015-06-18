@@ -39,7 +39,8 @@
   <!-- Everything below here is custom to .NET MF / Gadgeteer template-->
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
-    <Compile Include="Patterns\BicepCurl.cs" />
+    <Compile Include="Patterns\BicepCurlPattern.cs" />
+    <Compile Include="Patterns\ComplexPattern.cs" />
     <Compile Include="Patterns\CurlDownPattern.cs" />
     <Compile Include="Patterns\IActionPattern.cs" />
     <Compile Include="Patterns\CurlUpPattern.cs" />
