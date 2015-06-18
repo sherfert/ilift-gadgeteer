@@ -22,6 +22,7 @@ namespace ilift.Patterns
                 currentPattern.processAccelData(x, y, z);
         }
 
+        // TODO Find a way to add ComplexPattern as pattern
         public void addPattern(IActionPattern pattern)
         {
             pattern.onActionDone += nextPattern;

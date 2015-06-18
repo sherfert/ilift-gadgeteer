@@ -1,40 +1,37 @@
 using System;
 using Microsoft.SPOT;
+using System.Collections;
 
 namespace ilift.Patterns
 {
-    class BicepCurl
+    //Wrapper class for BicepCurl Complex Pattern, perhaps could be considered an Exercise with an id?
+    public class BicepCurl
     {
-        private IActionPattern currentPattern;
-        private CurlUpPattern cup;
-        private CurlDownPattern cdown;
-        private int repetition;
+
+        public event ActionDelegate onRepetitionDone;
+        private ComplexPattern bicepCurlPattern;
 
         public BicepCurl()
         {
-            cdown = new CurlDownPattern();
-            cup = new CurlUpPattern();
-            cdown.onActionDone += cdown_onActionDone;
-            cup.onActionDone += cup_onActionDone;
-            repetition = 0;
-            currentPattern = cdown;
+            bicepCurlPattern = new ComplexPattern();
+            bicepCurlPattern.addPattern(new CurlDownPattern());
+            bicepCurlPattern.addPattern(new CurlUpPattern());
+            bicepCurlPattern.onActionDone += repetition;
+      
         }
 
-        void cup_onActionDone()
+
+
+        public void processData(double x, double y, double z)
         {
-            repetition++;
-            currentPattern = cdown;
-            Debug.Print("" + repetition);
+            bicepCurlPattern.processAccelData(x, y, z);
         }
 
-        void cdown_onActionDone()
+        private void repetition()
         {
-            currentPattern = cup;
+            onRepetitionDone();
         }
 
-        public void processAccelData(double x, double y, double z)
-        {
-            currentPattern.processAccelData(x, y, z);
-        }
+
     }
 }

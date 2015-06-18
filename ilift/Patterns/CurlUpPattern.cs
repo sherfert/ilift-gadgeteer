@@ -5,11 +5,12 @@ namespace ilift.Patterns
 {
     public class CurlUpPattern : IActionPattern
     {
-
+        public event ActionDelegate onActionDone;
         public CurlUpPattern()
         {
         }
     
+        // TODO make more accurate specially with the wrong movement detection
         public void processAccelData(double x, double y, double z)
         {
             if (z < 1.1 && y < 0.2 && x < 0.08 && x > -0.08)
@@ -37,6 +38,6 @@ namespace ilift.Patterns
             
         }
 
-        public event ActionDelegate onActionDone;
+        
     }
 }
