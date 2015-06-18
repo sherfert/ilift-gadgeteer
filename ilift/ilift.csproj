@@ -44,6 +44,9 @@
     <Compile Include="Patterns\CurlDownPattern.cs" />
     <Compile Include="Patterns\IActionPattern.cs" />
     <Compile Include="Patterns\CurlUpPattern.cs" />
+    <Compile Include="Patterns\LateralRaise.cs" />
+    <Compile Include="Patterns\LateralRaiseDownPattern.cs" />
+    <Compile Include="Patterns\LateralRaiseUpPattern.cs" />
     <Compile Include="Program.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

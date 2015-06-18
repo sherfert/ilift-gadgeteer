@@ -20,6 +20,7 @@ namespace ilift
     public partial class Program
     {
         BicepCurl bicepCurl;
+        LateralRaise lateralRaise;
         // This method is run when the mainboard is powered up or reset.   
         void ProgramStarted()
         {
@@ -46,6 +47,9 @@ namespace ilift
             //bicepCurlPattern = new BicepCurlPattern();
             bicepCurl = new BicepCurl();
             bicepCurl.onRepetitionDone += bicepCurl_onRepetitionDone;
+
+            lateralRaise = new LateralRaise();
+            lateralRaise.onRepetitionDone += bicepCurl_onRepetitionDone;
             
             // Use Debug.Print to show messages in Visual Studio's "Output" window during debugging.
             Debug.Print("Program Started");
@@ -75,7 +79,8 @@ namespace ilift
             GTM.GHIElectronics.Accelerometer sender, 
             GTM.GHIElectronics.Accelerometer.MeasurementCompleteEventArgs e)
         {
-            bicepCurl.processData(e.X, e.Y, e.Z);
+            //bicepCurl.processData(e.X, e.Y, e.Z);
+            lateralRaise.processData(e.X, e.Y, e.Z);
         }
     }
 }
