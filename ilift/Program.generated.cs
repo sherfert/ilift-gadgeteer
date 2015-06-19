@@ -24,6 +24,12 @@ namespace ilift {
         /// <summary>The Button module using socket 8 of the mainboard.</summary>
         private Gadgeteer.Modules.GHIElectronics.Button button;
         
+        /// <summary>The Display TE35 module using sockets 14, 13, 12 and 10 of the mainboard.</summary>
+        private Gadgeteer.Modules.GHIElectronics.DisplayTE35 displayTE35;
+        
+        /// <summary>The RFID Reader module using socket 11 of the mainboard.</summary>
+        private Gadgeteer.Modules.GHIElectronics.RFIDReader rfidReader;
+        
         /// <summary>This property provides access to the Mainboard API. This is normally not necessary for an end user program.</summary>
         protected new static GHIElectronics.Gadgeteer.FEZSpider Mainboard {
             get {
@@ -49,6 +55,8 @@ namespace ilift {
             this.compass = new GTM.GHIElectronics.Compass(4);
             this.accelerometer = new GTM.GHIElectronics.Accelerometer(3);
             this.button = new GTM.GHIElectronics.Button(8);
+            this.displayTE35 = new GTM.GHIElectronics.DisplayTE35(14, 13, 12, 10);
+            this.rfidReader = new GTM.GHIElectronics.RFIDReader(11);
         }
     }
 }

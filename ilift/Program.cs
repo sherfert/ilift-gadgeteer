@@ -14,28 +14,22 @@ using GTM = Gadgeteer.Modules;
 using Gadgeteer.Modules.GHIElectronics;
 
 using ilift.Patterns;
+using ilift.Controller;
 
 namespace ilift
 {
-    public partial class Program
+    public partial class Program : HardwareController
     {
         BicepCurl bicepCurl;
         LateralRaise lateralRaise;
         // This method is run when the mainboard is powered up or reset.   
         void ProgramStarted()
         {
-            /*******************************************************************************************
-            Modules added in the Program.gadgeteer designer view are used by typing 
-            their name followed by a period, e.g.  button.  or  camera.
+            AppController gameController = new AppController(this);
             
-            Many modules generate useful events. Type +=<tab><tab> to add a handler to an event, e.g.:
-                button.ButtonPressed +=<tab><tab>
-            
-            If you want to do something periodically, use a GT.Timer and handle its Tick event, e.g.:
-                GT.Timer timer = new GT.Timer(1000); // every second (1000ms)
-                timer.Tick +=<tab><tab>
-                timer.Start();
-            *******************************************************************************************/
+            return;
+            // FIXME unreachable Ilmi's code
+
             button.ButtonPressed += new GTM.GHIElectronics.Button.ButtonEventHandler(button_ButtonPressed);
             accelerometer.MeasurementInterval = new TimeSpan(0, 0, 0, 0, 100);
             accelerometer.MeasurementComplete += new 
@@ -81,6 +75,38 @@ namespace ilift
         {
             //bicepCurl.processData(e.X, e.Y, e.Z);
             lateralRaise.processData(e.X, e.Y, e.Z);
+        }
+
+        public void RegisterButtonPressedHandler(Button.ButtonEventHandler handler)
+        {
+            button.ButtonPressed += handler;
+        }
+
+        public void RegisterDisplayTouchedHandler(GUITouchDelegate handler)
+        {
+            // TODO
+            //throw new NotImplementedException();
+        }
+
+        public void RegisterRFIDReadHandler(RFIDReadDelegate handler)
+        {
+            // TODO
+            //throw new NotImplementedException();
+        }
+
+        public Accelerometer GetAccelerometer()
+        {
+            return accelerometer;
+        }
+
+        public Compass GetCompass()
+        {
+            return compass;
+        }
+
+        public DisplayTE35 GetDisplay()
+        {
+            return displayTE35;
         }
     }
 }
