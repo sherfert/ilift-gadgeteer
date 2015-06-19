@@ -24,11 +24,24 @@ namespace ilift
         // This method is run when the mainboard is powered up or reset.   
         void ProgramStarted()
         {
+            
             button.ButtonPressed += delegate(Button sender, Button.ButtonState state)
             {
-                //NetworkClient.GetUser("satiaherfert", user => Debug.Print("Users name "+ user.username));
+                
                 NetworkClient.GetEquipmentByTag("4D0055BA45",
-                    equipment => Debug.Print("Eq weight: " + equipment.WeightKg + ""));
+                    equipment =>
+                    {
+                        NetworkClient.GetUser("satiaherfert", user =>
+                        {
+                            Session session = new Session();
+                            session.User = user;
+                            session.Equipment = equipment;
+                            session.Exercise = equipment.Type.AvailableExercises[0];
+                            session.Repetitions = 400;
+                            NetworkClient.PostSession(session);
+                            Debug.Print("We send a post request with repetitions " + session.Repetitions);
+                        });
+                    });
             };
             /*******************************************************************************************
             Modules added in the Program.gadgeteer designer view are used by typing 

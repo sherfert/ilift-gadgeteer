@@ -42,5 +42,12 @@ namespace ilift.Model
             get { return id; }
             set { id = value; }
         }
+
+        internal object ConstructHashTable()
+        {
+            Hashtable hashtable = new Hashtable();
+            hashtable.Add("id", id);
+            return hashtable;
+        }
     }
 }

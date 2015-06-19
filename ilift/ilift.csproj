@@ -42,6 +42,7 @@
     <Compile Include="Model\EqType.cs" />
     <Compile Include="Model\Equipment.cs" />
     <Compile Include="Model\Exercise.cs" />
+    <Compile Include="Model\Session.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Network\NetworkClient.cs" />
     <Compile Include="Program.generated.cs">

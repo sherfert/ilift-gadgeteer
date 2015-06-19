@@ -38,6 +38,12 @@ namespace ilift.Network
             };
         }
 
-
+        public static void PostSession(Session session)
+        {
+            POSTContent pc =
+                POSTContent.CreateTextBasedContent(JsonSerializer.SerializeObject(session.ConstructHashtable()));
+            HttpRequest rq = HttpHelper.CreateHttpPostRequest(ADDRESS + "session/",pc, "application/json");
+            rq.SendRequest();
+        }
     }
 }

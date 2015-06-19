@@ -18,6 +18,13 @@ namespace ilift.Model
             // sessions not needed, so we don't care
         }
 
-        
+
+
+        internal object ConstructHashtable()
+        {
+            Hashtable hashtable = new Hashtable();
+            hashtable.Add("id", id);
+            return hashtable;
+        }
     }
 }
