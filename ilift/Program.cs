@@ -33,11 +33,7 @@ namespace ilift
                     {
                         NetworkClient.GetUser("satiaherfert", user =>
                         {
-                            Session session = new Session();
-                            session.User = user;
-                            session.Equipment = equipment;
-                            session.Exercise = equipment.Type.AvailableExercises[0];
-                            session.Repetitions = 400;
+                            Session session = new Session(user, equipment.Type.AvailableExercises[0], 400, equipment);
                             NetworkClient.PostSession(session);
                             Debug.Print("We send a post request with repetitions " + session.Repetitions);
                         });
@@ -97,6 +93,9 @@ namespace ilift
         private void rfidReader_IdReceived(RFIDReader sender, string e)
         {
             Debug.Print("RFID scanned: " + e);
+            NetworkClient.GetUser(e,user => 
+                    Debug.Print("This user is : " + user.username)
+                );
         }
 
         private void rfidReader_MalformedIdReceived(RFIDReader sender, EventArgs e)

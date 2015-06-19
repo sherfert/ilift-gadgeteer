@@ -14,10 +14,10 @@ namespace ilift.Network
     {
         public const string ADDRESS = "http://192.168.43.181:8080/ilift/";
 
-        public static void GetUser(string username, UserReply userReplyDelegate)
+        public static void GetUser(string rfid, UserReply userReplyDelegate)
         {
             HttpRequest wc = WebClient.GetFromWeb(ADDRESS + 
-                "user/byUsername/" + username);
+                "user/" + rfid);
             wc.ResponseReceived += (sender, response) => 
             {
                 Debug.Print(response.Text);
