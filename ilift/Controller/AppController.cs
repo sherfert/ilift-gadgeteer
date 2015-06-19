@@ -27,6 +27,12 @@ namespace ilift.Controller
         // The hardware controller
         private HardwareController hardwareController;
 
+        public HardwareController HardwareController
+        {
+            get { return hardwareController; }
+            set { hardwareController = value; }
+        }
+
         /** Constructor that accepts a hardware controller
          */
         public AppController(HardwareController hardwareController)

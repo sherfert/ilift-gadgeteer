@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Threading;
+using GHI.Networking;
+using ilift.Model;
+using ilift.Network;
+using Json.NETMF;
 using Microsoft.SPOT;
 using Microsoft.SPOT.Presentation;
 using Microsoft.SPOT.Presentation.Controls;
@@ -12,7 +16,6 @@ using Gadgeteer.Networking;
 using GT = Gadgeteer;
 using GTM = Gadgeteer.Modules;
 using Gadgeteer.Modules.GHIElectronics;
-
 using ilift.Patterns;
 using ilift.Controller;
 
@@ -25,34 +28,93 @@ namespace ilift
         // This method is run when the mainboard is powered up or reset.   
         void ProgramStarted()
         {
-            AppController gameController = new AppController(this);
+            AppController appController = new AppController(this);
+
+            wifiRS21.NetworkInterface.Open();
+            ArrayList list = new ArrayList();
+            WiFiRS9110.NetworkParameters[] results = wifiRS21.NetworkInterface.Scan();
+
+            foreach (var netInterface in results)
+            {
+                if (netInterface.Ssid.Equals("AndroidAP"))
+                {
+                    netInterface.Key = "tk3-umundo";
+                    wifiRS21.NetworkInterface.Join(netInterface);
+                    Debug.Print("NetworkCOnnected:" + wifiRS21.IsNetworkConnected);
+                    wifiRS21.NetworkUp += WifiRs21OnNetworkUp;
+                }
+                Debug.Print(netInterface.Ssid);
+            }                 
             
-            return;
             // FIXME unreachable Ilmi's code
 
-            button.ButtonPressed += new GTM.GHIElectronics.Button.ButtonEventHandler(button_ButtonPressed);
-            accelerometer.MeasurementInterval = new TimeSpan(0, 0, 0, 0, 100);
-            accelerometer.MeasurementComplete += new 
-                GTM.GHIElectronics.Accelerometer.MeasurementCompleteEventHandler(accelerometer_MeasurementComplete);
-            compass.MeasurementInterval = new TimeSpan(0, 0, 0, 1);
-            compass.MeasurementComplete += new 
-                GTM.GHIElectronics.Compass.MeasurementCompleteEventHandler(compass_MeasurementComplete);
+            //button.ButtonPressed += new GTM.GHIElectronics.Button.ButtonEventHandler(button_ButtonPressed);
+            //accelerometer.MeasurementInterval = new TimeSpan(0, 0, 0, 0, 100);
+            //accelerometer.MeasurementComplete += new 
+            //    GTM.GHIElectronics.Accelerometer.MeasurementCompleteEventHandler(accelerometer_MeasurementComplete);
+            //compass.MeasurementInterval = new TimeSpan(0, 0, 0, 1);
+            //compass.MeasurementComplete += new 
+            //    GTM.GHIElectronics.Compass.MeasurementCompleteEventHandler(compass_MeasurementComplete);
 
-            //bicepCurlPattern = new BicepCurlPattern();
-            bicepCurl = new BicepCurl();
-            bicepCurl.onRepetitionDone += bicepCurl_onRepetitionDone;
+            ////bicepCurlPattern = new BicepCurlPattern();
+            //bicepCurl = new BicepCurl();
+            //bicepCurl.onRepetitionDone += bicepCurl_onRepetitionDone;
 
-            lateralRaise = new LateralRaise();
-            lateralRaise.onRepetitionDone += bicepCurl_onRepetitionDone;
+            //lateralRaise = new LateralRaise();
+            //lateralRaise.onRepetitionDone += bicepCurl_onRepetitionDone;
             
+            //button.ButtonPressed += delegate(Button sender, Button.ButtonState state)
+            //{
+                
+            //    NetworkClient.GetEquipmentByTag("4D0055BA45",
+            //        equipment =>
+            //        {
+            //            NetworkClient.GetUser("satiaherfert", user =>
+            //            {
+            //                Session session = new Session(user, equipment.Type.AvailableExercises[0], 400, equipment);
+            //                NetworkClient.PostSession(session);
+            //                Debug.Print("We send a post request with repetitions " + session.Repetitions);
+            //            });
+            //        });
+            //};
+            //accelerometer.MeasurementInterval = new TimeSpan(0,0,0,200);
+            //accelerometer.MeasurementComplete +=
+            //    delegate(Accelerometer sender, Accelerometer.MeasurementCompleteEventArgs args)
+            //    {
+            //        Debug.Print("X value " + args.X);
+            //        Debug.Print("Y value " + args.Y);
+            //        Debug.Print("Z value " + args.Z);
+            //    };
             // Use Debug.Print to show messages in Visual Studio's "Output" window during debugging.
-            Debug.Print("Program Started");
+            //Debug.Print("Program Started");
+            //this.rfidReader.IdReceived += this.rfidReader_IdReceived;
+            //this.rfidReader.MalformedIdReceived += this.rfidReader_MalformedIdReceived;
+            //Debug.Print(wifiRS21.NetworkSettings.IPAddress);
+			// TODO extract this to a method
+            
+
         }
-        
-        //TODO remove
+
+        private void WifiRs21OnNetworkUp(GTM.Module.NetworkModule sender, GTM.Module.NetworkModule.NetworkState state)
+        {
+            
+            Debug.Print("Now we are Network UP");
+           
+        }
+
+    
+
         private void rfidReader_IdReceived(RFIDReader sender, string e)
         {
             Debug.Print("RFID scanned: " + e);
+            NetworkClient.GetUser(e,user => 
+                    Debug.Print("This user is : " + user.username)
+                );
+        }
+
+        private void rfidReader_MalformedIdReceived(RFIDReader sender, EventArgs e)
+        {
+            Debug.Print("Please rescan your card");
         }
 
         void bicepCurl_onRepetitionDone()

@@ -55,6 +55,12 @@
     <Compile Include="Patterns\LateralRaise.cs" />
     <Compile Include="Patterns\LateralRaiseDownPattern.cs" />
     <Compile Include="Patterns\LateralRaiseUpPattern.cs" />
+    <Compile Include="Model\EqType.cs" />
+    <Compile Include="Model\Equipment.cs" />
+    <Compile Include="Model\Exercise.cs" />
+    <Compile Include="Model\Session.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Network\NetworkClient.cs" />
     <Compile Include="Program.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -106,6 +112,9 @@
     <Reference Include="GTM.GHIElectronics.WiFiRS21, Version=4.3.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="Json.NetMF">
+      <HintPath>..\packages\Json.NetMF.1.3.0.0\lib\netmf43\Json.NetMF.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SPOT.Graphics" />
     <Reference Include="Microsoft.SPOT.Hardware" />
     <Reference Include="Microsoft.SPOT.Native" />
@@ -122,6 +131,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Program.gadgeteer">
       <Generator>GadgeteerFileCodeGenerator</Generator>
       <LastGenOutput>Program.generated.cs</LastGenOutput>
@@ -131,5 +141,8 @@
     </None>
     <None Include="Resources\NinaB.tinyfnt" />
     <None Include="Resources\small.tinyfnt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GUI\WelcomeView\" />
   </ItemGroup>
 </Project>
