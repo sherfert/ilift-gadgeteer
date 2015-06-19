@@ -24,7 +24,7 @@ namespace ilift
 
         void RegisterDisplayTouchedHandler(/*TODO correct params*/GUITouchDelegate handler);
 
-        void RegisterRFIDReadHandler(/*TODO correct params*/RFIDReadDelegate handler);
+        void RegisterRFIDReadHandler(RFIDReader.IdReceivedEventHandler handler);
 
         /// <summary>
         /// Get the display

@@ -48,6 +48,12 @@ namespace ilift
             // Use Debug.Print to show messages in Visual Studio's "Output" window during debugging.
             Debug.Print("Program Started");
         }
+        
+        //TODO remove
+        private void rfidReader_IdReceived(RFIDReader sender, string e)
+        {
+            Debug.Print("RFID scanned: " + e);
+        }
 
         void bicepCurl_onRepetitionDone()
         {
@@ -88,10 +94,9 @@ namespace ilift
             //throw new NotImplementedException();
         }
 
-        public void RegisterRFIDReadHandler(RFIDReadDelegate handler)
+        public void RegisterRFIDReadHandler(RFIDReader.IdReceivedEventHandler handler)
         {
-            // TODO
-            //throw new NotImplementedException();
+            this.rfidReader.IdReceived += handler;
         }
 
         public Accelerometer GetAccelerometer()

@@ -39,7 +39,7 @@ namespace ilift.Controller
                 => { if (OnMainButtonClick!=null) OnMainButtonClick(); });
             this.hardwareController.RegisterDisplayTouchedHandler((x, y)
                 => { if (OnScreenTouched != null) OnScreenTouched(x, y); });
-            this.hardwareController.RegisterRFIDReadHandler((tag)
+            this.hardwareController.RegisterRFIDReadHandler((device, tag)
                 => { if (OnCardRead != null) OnCardRead(tag); });
             // Switch the state to the first state in the game: GameModeChoosingState
             SwitchState(new WelcomeState(hardwareController.GetDisplay(),this));
