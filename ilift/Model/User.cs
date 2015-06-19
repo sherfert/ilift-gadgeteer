@@ -4,11 +4,20 @@ using Microsoft.SPOT;
 
 namespace ilift.Model
 {
-    class User
+    public class User
     {
-        public int id;
+        public long id;
         public String rfidTag;
         public String username;
-        public ArrayList sessions;
+
+        public User(Hashtable hashtable)
+        {
+            id = (long) hashtable["id"];
+            rfidTag = (string) hashtable["rfidTag"];
+            username = (string)hashtable["username"];
+            // sessions not needed, so we don't care
+        }
+
+        
     }
 }

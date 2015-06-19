@@ -3,6 +3,7 @@ using System.Collections;
 using System.Threading;
 using GHI.Networking;
 using ilift.Model;
+using ilift.Network;
 using Json.NETMF;
 using Microsoft.SPOT;
 using Microsoft.SPOT.Presentation;
@@ -23,6 +24,12 @@ namespace ilift
         // This method is run when the mainboard is powered up or reset.   
         void ProgramStarted()
         {
+            button.ButtonPressed += delegate(Button sender, Button.ButtonState state)
+            {
+                //NetworkClient.GetUser("satiaherfert", user => Debug.Print("Users name "+ user.username));
+                NetworkClient.GetEquipmentByTag("4D0055BA45",
+                    equipment => Debug.Print("Eq weight: " + equipment.WeightKg + ""));
+            };
             /*******************************************************************************************
             Modules added in the Program.gadgeteer designer view are used by typing 
             their name followed by a period, e.g.  button.  or  camera.
@@ -69,20 +76,10 @@ namespace ilift
         private void WifiRs21OnNetworkUp(GTM.Module.NetworkModule sender, GTM.Module.NetworkModule.NetworkState state)
         {
             Debug.Print("Now we are Network UP");
-            Gadgeteer.Networking.HttpRequest wc = WebClient.GetFromWeb("http://192.168.43.181:8080/ilift/user/byUsername/satiaherfert");
-            wc.ResponseReceived += Target;
+           
         }
 
-        private void Target(HttpRequest sender, HttpResponse response)
-        {
-            Debug.Print(response.Text);
-
-            Hashtable hashTable = JsonSerializer.DeserializeString(response.Text) as Hashtable;
-            Debug.Print(hashTable[""] + " " + hashTable["lastName"]);
-            //User user = JsonConvert.DeserializeObject<User>(response.Text);
-            //Debug.Print("Users name" + user.username);
-
-        }
+    
 
         private void rfidReader_IdReceived(RFIDReader sender, string e)
         {
