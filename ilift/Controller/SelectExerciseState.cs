@@ -70,12 +70,12 @@ namespace ilift.Controller
         private void BicepsCurlHandler(object sender, TouchEventArgs touchEventArgs)
         {
             stateManager.GetSession().Exercise = stateManager.GetSession().Equipment.Type.AvailableExercises[0];
-            //stateManager.SwitchState();
+            stateManager.SwitchState(new StartExerciseState(display,stateManager));
         }
 
         public override void finish()
         {
-            throw new NotImplementedException();
+
         }
     }
 }

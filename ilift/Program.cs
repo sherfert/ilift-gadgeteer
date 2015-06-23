@@ -149,7 +149,7 @@ namespace ilift
             GTM.GHIElectronics.Accelerometer.MeasurementCompleteEventArgs e)
         {
             //bicepCurl.processData(e.X, e.Y, e.Z);
-            lateralRaise.processData(e.X, e.Y, e.Z);
+            lateralRaise.ProcessData(e.X, e.Y, e.Z);
         }
 
         public void RegisterButtonPressedHandler(Button.ButtonEventHandler handler)

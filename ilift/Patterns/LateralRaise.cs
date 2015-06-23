@@ -17,7 +17,7 @@ namespace ilift.Patterns
 
         }
 
-        public void ProcessData(double x, double y, double z)
+        public override void ProcessData(double x, double y, double z)
         {
             lateralRaisePattern.processAccelData(x, y, z);
         }
