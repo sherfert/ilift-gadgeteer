@@ -40,6 +40,7 @@
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
     <Compile Include="Controller\AppController.cs" />
+    <Compile Include="Controller\EquipmentState.cs" />
     <Compile Include="Controller\WelcomeState.cs" />
     <Compile Include="Controller\ExecutionState.cs" />
     <Compile Include="Controller\StateManager.cs" />

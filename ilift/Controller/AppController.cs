@@ -1,5 +1,6 @@
 using System;
 using Gadgeteer.Modules.GHIElectronics;
+using ilift.Model;
 using Microsoft.SPOT;
 
 namespace ilift.Controller
@@ -25,27 +26,36 @@ namespace ilift.Controller
         public event RFIDReadDelegate OnCardRead;
 
         // The hardware controller
-        private HardwareController hardwareController;
+        private HardwareController _hardwareController;
+
+        //Session 
+        private Session _session = new Session();
 
         public HardwareController HardwareController
         {
-            get { return hardwareController; }
-            set { hardwareController = value; }
+            get { return _hardwareController; }
+            set { _hardwareController = value; }
+        }
+
+        public Session Session
+        {
+            get { return _session; }
+            set { _session = value; }
         }
 
         /** Constructor that accepts a hardware controller
          */
         public AppController(HardwareController hardwareController)
         {
-            this.hardwareController = hardwareController;
+            this._hardwareController = hardwareController;
 
             // Register at the hardware controller, so that the logical events
             // are fired, if the corresponsing hardware events are triggered.
-            this.hardwareController.RegisterButtonPressedHandler((sender, buttonState) 
+            this._hardwareController.RegisterButtonPressedHandler((sender, buttonState) 
                 => { if (OnMainButtonClick!=null) OnMainButtonClick(); });
-            this.hardwareController.RegisterDisplayTouchedHandler((x, y)
+            this._hardwareController.RegisterDisplayTouchedHandler((x, y)
                 => { if (OnScreenTouched != null) OnScreenTouched(x, y); });
-            this.hardwareController.RegisterRFIDReadHandler((device, tag)
+            this._hardwareController.RegisterRFIDReadHandler((device, tag)
                 => { if (OnCardRead != null) OnCardRead(tag); });
             // Switch the state to the first state in the game: GameModeChoosingState
             SwitchState(new WelcomeState(hardwareController.GetDisplay(),this));
@@ -61,20 +71,25 @@ namespace ilift.Controller
                 state.finish();
             }
             // Clear display for new state
-            hardwareController.GetDisplay().SimpleGraphics.Clear();
+            _hardwareController.GetDisplay().SimpleGraphics.Clear();
 
             state = newState;
             state.init();
         }
 
+        public Session GetSession()
+        {
+            return _session;
+        }
+
         public Accelerometer GetAccelerometer()
         {
-            return hardwareController.GetAccelerometer();
+            return _hardwareController.GetAccelerometer();
         }
 
         public Compass GetCompass()
         {
-            return hardwareController.GetCompass();
+            return _hardwareController.GetCompass();
         }
     }
 }

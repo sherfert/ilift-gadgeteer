@@ -12,6 +12,11 @@ namespace ilift.Model
         private long repetitions;
         private Equipment equipment;
 
+        public Session()
+        {
+            
+        }
+
         public Session(User user, Exercise exercise, long repetitions, Equipment eq)
         {
             User = user;

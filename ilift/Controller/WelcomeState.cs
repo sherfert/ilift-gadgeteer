@@ -18,7 +18,6 @@ namespace ilift.Controller
         private const string SCAN_YOUR_CARD_TEXT = "Scan your card";
         private const string ERROR_TEXT = "Unknown user";
 
-        private Canvas canvas;
         private Text _welcomeLabel;
         private Text _scanYourCardLabel;
 
@@ -31,7 +30,6 @@ namespace ilift.Controller
         public WelcomeState(DisplayTE35 display, StateManager stateManager)
             : base(display, stateManager)
         {
-            canvas = new Canvas();
         }
 
         override public void init()
@@ -65,9 +63,12 @@ namespace ilift.Controller
         private void BindUser(string tag)
         {
             Debug.Print("Scanned tag: " + tag);
-            NetworkClient.GetUser(tag, user => {
-                _scanYourCardLabel.ForeColor = Gadgeteer.Color.Green;
-                _scanYourCardLabel.TextContent = user.username; 
+            NetworkClient.GetUser(tag, user =>
+            {
+                stateManager.GetSession().User = user;
+                //_scanYourCardLabel.ForeColor = Gadgeteer.Color.Green;
+                //_scanYourCardLabel.TextContent = user.username; 
+                stateManager.SwitchState(new EquipmentState(display,stateManager));
             });
 
             //throw new NotImplementedException();

@@ -1,5 +1,6 @@
 using System;
 using Gadgeteer.Modules.GHIElectronics;
+using ilift.Model;
 using Microsoft.SPOT;
 
 namespace ilift.Controller
@@ -29,5 +30,7 @@ namespace ilift.Controller
         /** Switch to a new state
          */
         void SwitchState(ExecutionState newState);
+
+        Session GetSession();
     }
 }
