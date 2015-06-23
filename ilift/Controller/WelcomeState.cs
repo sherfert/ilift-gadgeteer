@@ -64,7 +64,8 @@ namespace ilift.Controller
         {
             Debug.Print("Scanned tag: " + tag);
             NetworkClient.GetUser(tag, user =>
-            {
+            {   
+                //TODO handle null user 
                 stateManager.GetSession().User = user;
                 //_scanYourCardLabel.ForeColor = Gadgeteer.Color.Green;
                 //_scanYourCardLabel.TextContent = user.username; 

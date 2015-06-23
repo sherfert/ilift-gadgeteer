@@ -46,9 +46,9 @@ namespace ilift.Controller
         {
             NetworkClient.GetEquipmentByTag(tag, equipment =>
             {
+                //TODO handle null equipment
                 stateManager.GetSession().Equipment = equipment;
-
-                Debug.Print(equipment.Type.Name);
+                stateManager.SwitchState(new SelectExerciseState(display,stateManager));
             });
         }
 

@@ -33,7 +33,7 @@ namespace ilift
             wifiRS21.NetworkInterface.Open();
             ArrayList list = new ArrayList();
             WiFiRS9110.NetworkParameters[] results = wifiRS21.NetworkInterface.Scan();
-
+            //TODO extract this code to another place 
             foreach (var netInterface in results)
             {
                 if (netInterface.Ssid.Equals("AndroidAP"))
