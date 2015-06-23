@@ -42,6 +42,7 @@ namespace ilift
                     wifiRS21.NetworkInterface.Join(netInterface);
                     Debug.Print("NetworkCOnnected:" + wifiRS21.IsNetworkConnected);
                     wifiRS21.NetworkUp += WifiRs21OnNetworkUp;
+                    break;
                 }
                 Debug.Print(netInterface.Ssid);
             }                 
