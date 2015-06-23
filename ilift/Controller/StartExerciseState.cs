@@ -27,11 +27,11 @@ namespace ilift.Controller
         public StartExerciseState(DisplayTE35 display, StateManager state) : base(display, state)
         {
             // FIXME remove mockup data
-            Hashtable table = new Hashtable();
-            table["id"] = 1L;
-            table["name"] = "Biceps curl";
-            Exercise e = new Exercise(table);
-            stateManager.GetSession().Exercise = e;
+            //Hashtable table = new Hashtable();
+            //table["id"] = 1L;
+            //table["name"] = "Biceps curl";
+            //Exercise e = new Exercise(table);
+            //stateManager.GetSession().Exercise = e;
 
 
             exercise = ExerciseManager.GetExercise(stateManager.GetSession().Exercise.Id);
