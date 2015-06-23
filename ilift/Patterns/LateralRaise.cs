@@ -3,27 +3,23 @@ using Microsoft.SPOT;
 
 namespace ilift.Patterns
 {
-    class LateralRaise
+    public class LateralRaise : AbstractExercise
     {
-        public event ActionDelegate onRepetitionDone;
+        public event RepetitionDelegate onRepetitionDone;
         private ComplexPattern lateralRaisePattern;
+
         public LateralRaise()
         {
             lateralRaisePattern = new ComplexPattern();
             lateralRaisePattern.addPattern(new LateralRaiseDownPattern());
             lateralRaisePattern.addPattern(new LateralRaiseUpPattern());
-            lateralRaisePattern.onActionDone += repetition;
+            lateralRaisePattern.onActionDone += () => onRepetitionDone();
 
         }
 
-        public void processData(double x, double y, double z)
+        public void ProcessData(double x, double y, double z)
         {
             lateralRaisePattern.processAccelData(x, y, z);
-        }
-
-        private void repetition()
-        {
-            onRepetitionDone();
         }
     }
 }

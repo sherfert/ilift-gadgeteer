@@ -31,6 +31,9 @@ namespace ilift.Controller
          */
         void SwitchState(ExecutionState newState);
 
+        HardwareController GetHardwareController();
+       
+
         Session GetSession();
     }
 }

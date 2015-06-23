@@ -28,6 +28,8 @@ namespace ilift
         // This method is run when the mainboard is powered up or reset.   
         void ProgramStarted()
         {
+            Debug.Print("Program started");
+            AccelerometerInit();
             AppController appController = new AppController(this);
 
             wifiRS21.NetworkInterface.Open();
@@ -94,6 +96,10 @@ namespace ilift
 			// TODO extract this to a method
             
 
+        }
+
+        private void AccelerometerInit() {
+            accelerometer.MeasurementInterval = new TimeSpan(0, 0, 0, 0, 100);
         }
 
         private void WifiRs21OnNetworkUp(GTM.Module.NetworkModule sender, GTM.Module.NetworkModule.NetworkState state)
