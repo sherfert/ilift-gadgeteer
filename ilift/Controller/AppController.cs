@@ -37,6 +37,11 @@ namespace ilift.Controller
             set { _hardwareController = value; }
         }
 
+        public HardwareController GetHardwareController()
+        {
+            return _hardwareController;
+        }
+
         public Session Session
         {
             get { return _session; }
