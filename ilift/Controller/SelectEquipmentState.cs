@@ -70,7 +70,6 @@ namespace ilift.Controller
 
             //Events 
             stateManager.OnCardRead += BindEquipment;
-            //TODO add a Log out button so that it returns to the previous state
         }
 
         private void OnLogoutClicked(object sender, Microsoft.SPOT.Input.TouchEventArgs e)
