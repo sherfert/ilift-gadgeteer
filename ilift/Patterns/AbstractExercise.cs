@@ -23,6 +23,11 @@ namespace ilift.Patterns
         {
             this.accelerometer = accelerometer;
             accelerometer.Calibrate();
+           
+        }
+
+        public void StartExercise()
+        {
             accelerometer.MeasurementComplete += AcceptMeasurement;
             accelerometer.StartTakingMeasurements();
         }
