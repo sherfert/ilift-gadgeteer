@@ -5,10 +5,10 @@ namespace ilift.Patterns
 {
     class LateralRaiseDownPattern : IActionPattern
     {
-        private const double LEFT_BOUND = -0.03;
-        private const double RIGHT_BOUND = 0.1;
-        private const double Y_POSITION = 0.45;
-        private const double Z_POSITION = 1.2;
+        private const double LEFT_BOUND = -0.1;
+        private const double RIGHT_BOUND = -0.2;
+        private const double Y_POSITION = 0.1;
+        private const double Z_POSITION = 0.85;
 
         public event ActionDelegate onActionDone;
 
@@ -21,13 +21,13 @@ namespace ilift.Patterns
                 onActionDone();
 
             }
-            else if (z > Z_POSITION && y > Z_POSITION && x > RIGHT_BOUND)
+            else if (z > Z_POSITION && y > Z_POSITION && x > LEFT_BOUND && x < RIGHT_BOUND)
             {
                 Debug.Print("Too much right!");
                 onActionDone();
 
             }
-            else if (z > Z_POSITION && y > Y_POSITION && x < LEFT_BOUND)
+            else if (z > Z_POSITION && y > Y_POSITION && x > LEFT_BOUND && x < RIGHT_BOUND)
             {
                 Debug.Print("Too much left!");
                 onActionDone();

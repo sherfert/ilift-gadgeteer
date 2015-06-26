@@ -5,7 +5,7 @@ namespace ilift.Patterns
 {
     public class TricepExtension:AbstractExercise
     {
-         private ComplexPattern tricepExtensionPattern;
+        private ComplexPattern tricepExtensionPattern;
 
         public TricepExtension()
         {

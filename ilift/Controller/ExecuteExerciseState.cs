@@ -82,12 +82,13 @@ namespace ilift.Controller
                 Session session = stateManager.GetSession();
                 session.Repetitions = count;
                 Network.NetworkClient.PostSession(session);
+                stateManager.SwitchState(new SummaryState(display, stateManager));
             }
             else
             {
                 stateManager.SwitchState(new SelectExerciseState(display, stateManager));
             }
-            //stateManager.SwitchState(new SummaryState(display, stateManager));
+            
         }
 
         public void UpdateScreen()

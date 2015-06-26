@@ -12,6 +12,7 @@ namespace ilift.Patterns
         {
             _exercises[1L] = new BicepCurl();
             _exercises[2L] = new LateralRaise();
+            _exercises[3L] = new TricepExtension();
         }
 
         public static AbstractExercise GetExercise(long id)
