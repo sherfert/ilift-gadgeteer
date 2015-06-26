@@ -7,14 +7,15 @@ namespace ilift.Patterns
     {
         private const double LEFT_BOUND = -0.1;
         private const double RIGHT_BOUND = -0.2;
-        private const double Y_POSITION = 0.1;
-        private const double Z_POSITION = 0.85;
+        private const double Y_POSITION = 0.38;
+        private const double Z_POSITION = 1.1;
 
         public event ActionDelegate onActionDone;
 
         public void processAccelData(double x, double y, double z)
         {
-            if (z > Z_POSITION && y > Y_POSITION && x < RIGHT_BOUND && x > LEFT_BOUND)
+            //&& x < RIGHT_BOUND && x > LEFT_BOUND
+            if (z > Z_POSITION && y > Y_POSITION )
             {
                 Debug.Print("Down!!!");
                 //Debug.Print("Accelerometer:\tx: " + x + "\ty: " + y + "\tz: " + z + "\n");
