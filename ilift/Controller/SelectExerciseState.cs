@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using Gadgeteer.Modules.GHIElectronics;
+using ilift.GUI;
 using ilift.Model;
 using Microsoft.SPOT;
 using Microsoft.SPOT.Input;
@@ -15,11 +16,13 @@ namespace ilift.Controller
     {
         private const String SELECTED_EQUIPEMENT_TEXT = "Selected equipment: ";
         private const String CHOOSE_EXERCISE_TEXT = "Choose an exercise";
+        private const String EXERCISE_KEY = "exercise";
+
 
         private Text _selectedEquipment;
         private Text _chooseExercise;
-        
-        private Rectangle[] exButtons = new Rectangle[4];
+
+        private ParameterizedRectangle[] exButtons = new ParameterizedRectangle[4];
         private Text[] buttonLabels = new Text[4];
         
         public SelectExerciseState(DisplayTE35 display, StateManager state) : base(display, state)
@@ -47,10 +50,11 @@ namespace ilift.Controller
             int buttonWidth = (int) (display.Width*0.9);
             int buttonHeight = (int)(display.Height*0.15);
             int startY = 2*buttonHeight;
-            for (int i = 0; i < exercises.Length; i++)
+            int minimum = System.Math.Min(4, exercises.Length);
+            for (int i = 0; i < minimum; i++)
             {
-
-                exButtons[i] = new Rectangle(buttonWidth,buttonHeight);
+                exButtons[i] = new ParameterizedRectangle(buttonWidth, buttonHeight);
+                exButtons[i].AddParameter(EXERCISE_KEY, exercises[i]);
                 exButtons[i].Fill = new SolidColorBrush(Gadgeteer.Color.Gray);
                 exButtons[i].SetMargin(10, 10, 10, 10);
                 buttonLabels[i] = new Text(font,exercises[i].Name);
@@ -62,14 +66,17 @@ namespace ilift.Controller
                 Canvas.SetLeft(buttonLabels[i], 25);
                 canvas.Children.Add(exButtons[i]);
                 canvas.Children.Add(buttonLabels[i]);
+                exButtons[i].TouchDown += ExerciseSelectedHandler;
             }
-            exButtons[0].TouchDown += BicepsCurlHandler;
             display.WPFWindow.Child = canvas;
         }
 
-        private void BicepsCurlHandler(object sender, TouchEventArgs touchEventArgs)
+        private void ExerciseSelectedHandler(object sender, TouchEventArgs touchEventArgs)
         {
-            stateManager.GetSession().Exercise = stateManager.GetSession().Equipment.Type.AvailableExercises[0];
+            ParameterizedRectangle r = (ParameterizedRectangle)sender;
+            Exercise exercise = (Exercise)r.GetParameter(EXERCISE_KEY);
+            Debug.Print(exercise.Name);
+            stateManager.GetSession().Exercise = exercise;
             stateManager.SwitchState(new StartExerciseState(display,stateManager));
         }
 
