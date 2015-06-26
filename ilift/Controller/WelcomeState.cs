@@ -69,7 +69,7 @@ namespace ilift.Controller
                 stateManager.GetSession().User = user;
                 //_scanYourCardLabel.ForeColor = Gadgeteer.Color.Green;
                 //_scanYourCardLabel.TextContent = user.username; 
-                stateManager.SwitchState(new EquipmentState(display,stateManager));
+                stateManager.SwitchState(new SelectEquipmentState(display,stateManager));
             });
 
             //throw new NotImplementedException();
