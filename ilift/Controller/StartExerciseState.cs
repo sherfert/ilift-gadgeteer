@@ -33,8 +33,8 @@ namespace ilift.Controller
             //table["name"] = "Biceps curl";
             //Exercise e = new Exercise(table);
             //stateManager.GetSession().Exercise = e;
-
-         
+            String exerciseID = stateManager.GetSession().Exercise.Id.ToString();
+            Debug.Print(exerciseID);
             exercise = ExerciseManager.GetExercise(stateManager.GetSession().Exercise.Id);
         }
         public override void init()
