@@ -13,17 +13,6 @@ namespace ilift
     /// </summary>
     public interface HardwareController
     {
-        /// TODO Add the events for the touch screen
-        /// 
-                
-        /// <summary>
-        /// Register a handler for button pressed
-        /// </summary>
-        /// <param name="downHandler">the handler</param>
-       // void RegisterButtonPressedHandler(Button.ButtonEventHandler handler);
-
-        void RegisterDisplayTouchedHandler(/*TODO correct params*/GUITouchDelegate handler);
-
         void RegisterRFIDReadHandler(RFIDReader.IdReceivedEventHandler handler);
 
         /// <summary>
