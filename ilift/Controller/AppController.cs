@@ -22,7 +22,6 @@ namespace ilift.Controller
 
         // Inherited events
         public event GUIDelegate OnMainButtonClick;
-        public event GUITouchDelegate OnScreenTouched;
         public event RFIDReadDelegate OnCardRead;
 
         // The hardware controller
@@ -59,6 +58,7 @@ namespace ilift.Controller
             this._hardwareController.RegisterRFIDReadHandler((device, tag)
                 => { if (OnCardRead != null) OnCardRead(tag); });
             // Switch the state to the first state in the game: GameModeChoosingState
+
             SwitchState(new WelcomeState(hardwareController.GetDisplay(),this));
         }
 

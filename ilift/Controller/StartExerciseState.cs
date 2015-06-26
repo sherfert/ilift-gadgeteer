@@ -39,7 +39,7 @@ namespace ilift.Controller
         }
         public override void init()
         {
-            display.WPFWindow.UpdateLayout(); //TODO do we need this?
+            //display.WPFWindow.UpdateLayout(); //TODO do we need this?
             Font font = Resources.GetFont(Resources.FontResources.NinaB);
             
             _execTitleLabel = new Text(font, stateManager.GetSession().Exercise.Name);

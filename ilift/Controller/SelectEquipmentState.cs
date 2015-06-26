@@ -21,13 +21,19 @@ namespace ilift.Controller
         private ParameterizedRectangle _logoutButton;
         private Text _logoutLabel;
 
+        /// <summary>
+        /// SelectEquipmentState deals with scaning the equipment rfid tag and switching to
+        /// the state where the user is promt to select the exercise.
+        /// </summary>
+        /// <param name="display">the display</param>
+        /// <param name="stateManager">the state manager</param>
         public SelectEquipmentState(DisplayTE35 display, StateManager state) : base(display, state)
         {
         }
 
         public override void init()
         {
-            display.WPFWindow.UpdateLayout();
+            //display.WPFWindow.UpdateLayout(); //TODO do we need this ?
             _welcomeLabel = new Text(GUIConstants.FONT, WELCOME_TEXT + stateManager.GetSession().User.username);
             _welcomeLabel.ForeColor = Gadgeteer.Color.Black;
             Canvas.SetTop(_welcomeLabel, 50);
@@ -71,11 +77,21 @@ namespace ilift.Controller
             stateManager.OnCardRead += BindEquipment;
         }
 
+        /// <summary>
+        /// Handler to Rectangle LogOutClick Touch Down event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnLogoutClicked(object sender, Microsoft.SPOT.Input.TouchEventArgs e)
         {
             stateManager.SwitchState(new WelcomeState(display, stateManager));
         }
 
+        /// <summary>
+        /// Handler to rfidReader binding the equipment to the current session.
+        /// and changing the state to promt the user to select the exercise.
+        /// </summary>
+        /// <param name="tag">Rfid Tag</param>
         private void BindEquipment(string tag)
         {
             NetworkClient.GetEquipmentByTag(tag, equipment =>

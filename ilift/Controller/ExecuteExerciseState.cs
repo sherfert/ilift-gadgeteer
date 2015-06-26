@@ -40,7 +40,7 @@ namespace ilift.Controller
             int buttonHeight = (int)(display.Height * 0.15);
             int startY = 2 * buttonHeight;
             int startX = LEFT_OFFSET;
-            display.WPFWindow.UpdateLayout(); //TODO do we need this?
+            //display.WPFWindow.UpdateLayout(); //TODO do we need this?
             Font font = Resources.GetFont(Resources.FontResources.NinaB);
             exercise.onRepetitionDone += UpdateScreen;
             exercise.StartExercise();
