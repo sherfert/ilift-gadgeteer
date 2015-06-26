@@ -52,7 +52,7 @@ namespace ilift.Controller
             _doneButton = new ParameterizedRectangle(2 * buttonWidth + SPACING, buttonHeight);
             _doneButton.Fill = new SolidColorBrush(DONE_BUTTON_COLOR);
 
-           //_cancelButton.SetMargin(DEFAULT_MARGIN);
+           _doneButton.SetMargin(GUI.GUIConstants.DEFAULT_MARGIN);
             Canvas.SetTop(_doneButton, startY + 2 * (buttonHeight + SPACING));
             Canvas.SetLeft(_doneButton, startX);
 
@@ -77,12 +77,17 @@ namespace ilift.Controller
             Debug.Print("Touched");
             exercise.StopExercise();
 
-            Session session = stateManager.GetSession();
-            session.Repetitions = count;
-     
-            Network.NetworkClient.PostSession(session);
-
-            stateManager.SwitchState(new SummaryState(display, stateManager));
+            if (count != 0)
+            {
+                Session session = stateManager.GetSession();
+                session.Repetitions = count;
+                Network.NetworkClient.PostSession(session);
+            }
+            else
+            {
+                stateManager.SwitchState(new SelectExerciseState(display, stateManager));
+            }
+            //stateManager.SwitchState(new SummaryState(display, stateManager));
         }
 
         public void UpdateScreen()
