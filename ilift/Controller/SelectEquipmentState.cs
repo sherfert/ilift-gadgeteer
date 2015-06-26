@@ -6,7 +6,7 @@ using Microsoft.SPOT.Presentation.Controls;
 
 namespace ilift.Controller
 {
-    class EquipmentState : ExecutionState
+    public class SelectEquipmentState : ExecutionState
     {
         private const string WELCOME_TEXT = "Welcome ";
         private const string SCAN_AN_EQUIPMENT_TEXT = "Scan an Equipment";
@@ -15,7 +15,7 @@ namespace ilift.Controller
         private Text _welcomeLabel;
         private Text _scanAnEquipmentLabel;
 
-        public EquipmentState(DisplayTE35 display, StateManager state) : base(display, state)
+        public SelectEquipmentState(DisplayTE35 display, StateManager state) : base(display, state)
         {
         }
 
@@ -40,6 +40,7 @@ namespace ilift.Controller
 
             //Events 
             stateManager.OnCardRead += BindEquipment;
+            //TODO add a Log out button so that it returns to the previous state
         }
 
         private void BindEquipment(string tag)
