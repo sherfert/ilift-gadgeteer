@@ -21,8 +21,15 @@ namespace ilift.Network
             wc.ResponseReceived += (sender, response) => 
             {
                 Debug.Print(response.Text);
-                Hashtable userHt = JsonSerializer.DeserializeString(response.Text) as Hashtable;
-                userReplyDelegate(new User(userHt));
+                if (response.Text == "null")
+                {
+                    userReplyDelegate(null);
+                }
+                else
+                {
+                    Hashtable userHt = JsonSerializer.DeserializeString(response.Text) as Hashtable;
+                    userReplyDelegate(new User(userHt));
+                }
             };
         }
 
@@ -33,8 +40,15 @@ namespace ilift.Network
             wc.ResponseReceived += (sender, response) =>
             {
                 Debug.Print(response.Text);
-                Hashtable equipmentHt = JsonSerializer.DeserializeString(response.Text) as Hashtable;
-                equipmentReplyDelegate(new Equipment(equipmentHt));
+                if (response.Text == "null")
+                {
+                    equipmentReplyDelegate(null);
+                }
+                else
+                {
+                    Hashtable equipmentHt = JsonSerializer.DeserializeString(response.Text) as Hashtable;
+                    equipmentReplyDelegate(new Equipment(equipmentHt));
+                }
             };
         }
 
