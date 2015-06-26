@@ -44,7 +44,6 @@
     <Compile Include="Controller\ExecuteExerciseState.cs" />
     <Compile Include="Controller\SelectExerciseState.cs" />
     <Compile Include="Controller\StartExerciseState.cs" />
-    <Compile Include="Controller\SummaryState.cs" />
     <Compile Include="Controller\WelcomeState.cs" />
     <Compile Include="Controller\ExecutionState.cs" />
     <Compile Include="Controller\StateManager.cs" />

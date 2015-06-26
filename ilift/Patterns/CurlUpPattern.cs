@@ -13,7 +13,7 @@ namespace ilift.Patterns
         // TODO make more accurate specially with the wrong movement detection
         public void processAccelData(double x, double y, double z)
         {
-            if (z < 1.1 && y < 0.2 && x < 0.08 && x > -0.08)
+            if (z > 1 && y < 0.2 && x < 0.08 && x > -0.08)
             {
                 Debug.Print("Up!!!");
                 //Debug.Print("Accelerometer:\tx: " + x + "\ty: " + y + "\tz: " + z + "\n");
