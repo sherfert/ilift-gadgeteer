@@ -5,7 +5,7 @@ namespace ilift.Patterns
 {
     public class LateralRaise : AbstractExercise
     {
-        public event RepetitionDelegate onRepetitionDone;
+        
         private ComplexPattern lateralRaisePattern;
 
         public LateralRaise()
@@ -13,7 +13,7 @@ namespace ilift.Patterns
             lateralRaisePattern = new ComplexPattern();
             lateralRaisePattern.addPattern(new LateralRaiseDownPattern());
             lateralRaisePattern.addPattern(new LateralRaiseUpPattern());
-            lateralRaisePattern.onActionDone += () => onRepetitionDone();
+            lateralRaisePattern.onActionDone += onRepetitionDoneHandler;
 
         }
 
