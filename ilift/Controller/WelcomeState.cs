@@ -16,11 +16,10 @@ namespace ilift.Controller
     {
         private const string WELCOME_TEXT = "Welcome to iLift!";
         private const string SCAN_YOUR_CARD_TEXT = "Scan your card";
-        private const string ERROR_TEXT = "Unknown user";
+        private const string ERROR_TEXT = "Scan a valid user card";
 
         private Text _welcomeLabel;
         private Text _scanYourCardLabel;
-
 
         /// <summary>
         /// Constructor
@@ -51,9 +50,10 @@ namespace ilift.Controller
             canvas.Children.Add(_scanYourCardLabel);
 
             display.WPFWindow.Child = canvas;
-            
+
             // INIT EVENTS
-            stateManager.OnCardRead += BindUser;            
+            stateManager.OnCardRead += BindUser;
+            
         }
 
         /// <summary>
@@ -64,12 +64,18 @@ namespace ilift.Controller
         {
             Debug.Print("Scanned tag: " + tag);
             NetworkClient.GetUser(tag, user =>
-            {   
-                //TODO handle null user 
-                stateManager.GetSession().User = user;
-                //_scanYourCardLabel.ForeColor = Gadgeteer.Color.Green;
-                //_scanYourCardLabel.TextContent = user.username; 
-                stateManager.SwitchState(new SelectEquipmentState(display,stateManager));
+            {
+                if (user != null)
+                {
+                    stateManager.GetSession().User = user;
+                    //_scanYourCardLabel.ForeColor = Gadgeteer.Color.Green;
+                    //_scanYourCardLabel.TextContent = user.username; 
+                    stateManager.SwitchState(new SelectEquipmentState(display, stateManager));
+                }
+                else
+                {
+                    _scanYourCardLabel.TextContent = ERROR_TEXT;
+                }
             });
 
             //throw new NotImplementedException();

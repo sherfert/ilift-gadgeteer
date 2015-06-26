@@ -48,9 +48,7 @@
     <Compile Include="Controller\WelcomeState.cs" />
     <Compile Include="Controller\ExecutionState.cs" />
     <Compile Include="Controller\StateManager.cs" />
-    <Compile Include="GUI\GButton.cs" />
-    <Compile Include="GUI\GString.cs" />
-    <Compile Include="GUI\GWidget.cs" />
+    <Compile Include="GUI\GUIConstants.cs" />
     <Compile Include="GUI\ParameterizedRectangle.cs" />
     <Compile Include="HWController.cs" />
     <Compile Include="Patterns\AbstractExercise.cs" />
@@ -147,7 +145,5 @@
     <None Include="Resources\NinaB.tinyfnt" />
     <None Include="Resources\small.tinyfnt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GUI\WelcomeView\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>
