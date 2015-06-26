@@ -135,14 +135,14 @@ namespace ilift
             //Debug.Print("Compass:\tx: " + e.X + "\ty: " + e.Y + "\tz: " + e.Z + "\n");
         }
 
-        void button_ButtonPressed(GTM.GHIElectronics.Button sender, GTM.GHIElectronics.Button.ButtonState state)
-        {
-            //compass.StartTakingMeasurements();
+        //void button_ButtonPressed(GTM.GHIElectronics.Button sender, GTM.GHIElectronics.Button.ButtonState state)
+        //{
+        //    //compass.StartTakingMeasurements();
 
-            accelerometer.Calibrate();
-            accelerometer.StartTakingMeasurements();
-            Debug.Print("Calibrated");
-        }
+        //    accelerometer.Calibrate();
+        //    accelerometer.StartTakingMeasurements();
+        //    Debug.Print("Calibrated");
+        //}
 
         void accelerometer_MeasurementComplete(
             GTM.GHIElectronics.Accelerometer sender, 
@@ -152,10 +152,10 @@ namespace ilift
             lateralRaise.ProcessData(e.X, e.Y, e.Z);
         }
 
-        public void RegisterButtonPressedHandler(Button.ButtonEventHandler handler)
-        {
-            button.ButtonPressed += handler;
-        }
+        //public void RegisterButtonPressedHandler(Button.ButtonEventHandler handler)
+        //{
+        //    button.ButtonPressed += handler;
+        //}
 
         public void RegisterDisplayTouchedHandler(GUITouchDelegate handler)
         {

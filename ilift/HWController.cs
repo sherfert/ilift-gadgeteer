@@ -20,7 +20,7 @@ namespace ilift
         /// Register a handler for button pressed
         /// </summary>
         /// <param name="downHandler">the handler</param>
-        void RegisterButtonPressedHandler(Button.ButtonEventHandler handler);
+       // void RegisterButtonPressedHandler(Button.ButtonEventHandler handler);
 
         void RegisterDisplayTouchedHandler(/*TODO correct params*/GUITouchDelegate handler);
 

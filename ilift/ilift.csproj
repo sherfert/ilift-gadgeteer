@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Controller\AppController.cs" />
     <Compile Include="Controller\EquipmentState.cs" />
+    <Compile Include="Controller\ExecuteExerciseState.cs" />
     <Compile Include="Controller\SelectExerciseState.cs" />
     <Compile Include="Controller\StartExerciseState.cs" />
     <Compile Include="Controller\WelcomeState.cs" />
@@ -100,9 +101,6 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="GTM.GHIElectronics.Accelerometer, Version=4.3.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="GTM.GHIElectronics.Button, Version=4.3.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="GTM.GHIElectronics.Compass, Version=4.3.6.0, Culture=neutral, processorArchitecture=MSIL">

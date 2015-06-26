@@ -12,7 +12,7 @@ namespace ilift.Network
 
     public class NetworkClient
     {
-        public const string ADDRESS = "http://192.168.43.245:8080/ilift/";
+        public const string ADDRESS = "http://192.168.43.181:8080/ilift/";
 
         public static void GetUser(string rfid, UserReply userReplyDelegate)
         {

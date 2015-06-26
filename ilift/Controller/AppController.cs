@@ -56,8 +56,8 @@ namespace ilift.Controller
 
             // Register at the hardware controller, so that the logical events
             // are fired, if the corresponsing hardware events are triggered.
-            this._hardwareController.RegisterButtonPressedHandler((sender, buttonState) 
-                => { if (OnMainButtonClick!=null) OnMainButtonClick(); });
+            //this._hardwareController.RegisterButtonPressedHandler((sender, buttonState) 
+            //    => { if (OnMainButtonClick!=null) OnMainButtonClick(); });
             this._hardwareController.RegisterDisplayTouchedHandler((x, y)
                 => { if (OnScreenTouched != null) OnScreenTouched(x, y); });
             this._hardwareController.RegisterRFIDReadHandler((device, tag)
