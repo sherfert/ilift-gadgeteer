@@ -26,6 +26,7 @@ namespace ilift.Controller
         
         public StartExerciseState(DisplayTE35 display, StateManager state) : base(display, state)
         {
+            
             // FIXME remove mockup data
             //Hashtable table = new Hashtable();
             //table["id"] = 1L;
@@ -33,7 +34,7 @@ namespace ilift.Controller
             //Exercise e = new Exercise(table);
             //stateManager.GetSession().Exercise = e;
 
-
+         
             exercise = ExerciseManager.GetExercise(stateManager.GetSession().Exercise.Id);
         }
         public override void init()
@@ -91,7 +92,7 @@ namespace ilift.Controller
             exercise.Calibrate(stateManager.GetHardwareController().GetAccelerometer());
 
             // TODO switch to next screen
-            //stateManager.SwitchState(new StartExerciseState(display, stateManager));
+            stateManager.SwitchState(new ExecuteExerciseState(display, stateManager, exercise));
         }
 
         public override void finish()
