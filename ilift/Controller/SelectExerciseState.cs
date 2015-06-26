@@ -32,6 +32,12 @@ namespace ilift.Controller
         private ParameterizedRectangle _cancelButton;
         private Text _cancelLabel;
 
+        /// <summary>
+        /// SelectExerciseState promts the user to select an exercise according to the
+        /// equipment selected. 
+        /// </summary>
+        /// <param name="display">the display</param>
+        /// <param name="stateManager">the state manager</param>
         public SelectExerciseState(DisplayTE35 display, StateManager state)
             : base(display, state)
         {
@@ -42,7 +48,7 @@ namespace ilift.Controller
         {
             // Get all available exercises for that equipment
             Exercise[] exercises = stateManager.GetSession().Equipment.Type.AvailableExercises;
-
+           
             _selectedEquipment = new Text(GUIConstants.FONT, SELECTED_EQUIPEMENT_TEXT + stateManager.GetSession().Equipment.Type.Name);
             _selectedEquipment.ForeColor = Gadgeteer.Color.Green;
             canvas.Children.Add(_selectedEquipment);
@@ -107,12 +113,21 @@ namespace ilift.Controller
 
             display.WPFWindow.Child = canvas;
         }
-
+        /// <summary>
+        /// When Cancel Clicked it switches the state to SelectEquipmentState
+        /// </summary>
+        /// <param name="sender">object fired the event</param>
+        /// <param name="touchEventArgs">event args</param>
         private void OnCancelClicked(object sender, TouchEventArgs touchEventArgs)
         {
             stateManager.SwitchState(new SelectEquipmentState(display, stateManager));
         }
 
+        /// <summary>
+        /// Handles the click of a certain exercise.
+        /// </summary>
+        /// <param name="sender">object that triggered the event</param>
+        /// <param name="touchEventArgs">other args.</param>
         private void ExerciseSelectedHandler(object sender, TouchEventArgs touchEventArgs)
         {
             ParameterizedRectangle r = (ParameterizedRectangle)sender;

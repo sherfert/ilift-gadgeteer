@@ -10,7 +10,7 @@ using ilift.Network;
 namespace ilift.Controller
 {
     /// <summary>
-    /// The state to choose between 1player or 2 player mode.
+    /// Welcome States promts the user to scan his/her id card.
     /// </summary>
     public class WelcomeState : ExecutionState
     {
@@ -22,7 +22,7 @@ namespace ilift.Controller
         private Text _scanYourCardLabel;
 
         /// <summary>
-        /// Constructor
+        /// Constructing the WelcomeState passing display, and stateManager to the super
         /// </summary>
         /// <param name="display">the display</param>
         /// <param name="stateManager">the state manager</param>
@@ -57,9 +57,10 @@ namespace ilift.Controller
         }
 
         /// <summary>
-        /// 
+        /// The handler of RfidReader, it binds the user to the current session 
+        /// and changes the state to select equipment state. 
         /// </summary>
-        /// <param name="tag"></param>
+        /// <param name="tag">the tag passed to the handler</param>
         private void BindUser(string tag)
         {
             Debug.Print("Scanned tag: " + tag);
@@ -68,8 +69,6 @@ namespace ilift.Controller
                 if (user != null)
                 {
                     stateManager.GetSession().User = user;
-                    //_scanYourCardLabel.ForeColor = Gadgeteer.Color.Green;
-                    //_scanYourCardLabel.TextContent = user.username; 
                     stateManager.SwitchState(new SelectEquipmentState(display, stateManager));
                 }
                 else
@@ -77,8 +76,6 @@ namespace ilift.Controller
                     _scanYourCardLabel.TextContent = ERROR_TEXT;
                 }
             });
-
-            //throw new NotImplementedException();
         }
 
         override public void finish()
