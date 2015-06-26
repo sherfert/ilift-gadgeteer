@@ -18,8 +18,11 @@ namespace ilift.Patterns
 
         public void processAccelData(double x, double y, double z)
         {
-            if(currentPattern != null)
+            if (currentPattern != null)
+            {
+                Debug.Print("Accelerometer:\tx: " + x + "\ty: " + y + "\tz: " + z + "\n");
                 currentPattern.processAccelData(x, y, z);
+            }
         }
 
         // TODO Find a way to add ComplexPattern as pattern
