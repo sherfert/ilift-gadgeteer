@@ -9,7 +9,7 @@ namespace ilift.Patterns
     public class BicepCurl : AbstractExercise
     {
 
-        public event RepetitionDelegate onRepetitionDone;
+        //public event RepetitionDelegate onRepetitionDone;
         private ComplexPattern bicepCurlPattern;
 
         public BicepCurl()
@@ -17,10 +17,9 @@ namespace ilift.Patterns
             bicepCurlPattern = new ComplexPattern();
             bicepCurlPattern.addPattern(new CurlDownPattern());
             bicepCurlPattern.addPattern(new CurlUpPattern());
-            bicepCurlPattern.onActionDone += () => onRepetitionDone();
+            bicepCurlPattern.onActionDone += onRepetitionDoneHandler;
       
         }
-
 
         public override void ProcessData(double x, double y, double z)
         {

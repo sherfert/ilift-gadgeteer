@@ -69,6 +69,7 @@ namespace ilift.Controller
             // Start the timer
             _tickTimer.Tick += Timer;
             _tickTimer.Start();
+            
         }
 
         private void Timer(Gadgeteer.Timer timer)
@@ -76,6 +77,7 @@ namespace ilift.Controller
             if (_currentTimerValue == 0)
             {
                 _tickTimer.Stop();
+                //_tickTimer.Tick -= Timer;
                 Calibrate();
             }
             else
@@ -97,6 +99,7 @@ namespace ilift.Controller
 
         public override void finish()
         {
+            
         }
     }
 }

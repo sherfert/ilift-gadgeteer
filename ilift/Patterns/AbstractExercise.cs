@@ -42,5 +42,11 @@ namespace ilift.Patterns
             accelerometer.StopTakingMeasurements();
             accelerometer.MeasurementComplete -= AcceptMeasurement;
         }
+
+        public void onRepetitionDoneHandler()
+        {
+            onRepetitionDone();
+        }
+
     }
 }
