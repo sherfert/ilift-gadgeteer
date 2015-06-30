@@ -8,6 +8,9 @@ using Microsoft.SPOT.Presentation.Media;
 
 namespace ilift.Controller
 {
+    /// <summary>
+    /// State where the user is promt to scan an equipment
+    /// </summary>
     public class SelectEquipmentState : ExecutionState
     {
         private const string WELCOME_TEXT = "Welcome ";
@@ -31,14 +34,20 @@ namespace ilift.Controller
         {
         }
 
+
         public override void init()
         {
             //display.WPFWindow.UpdateLayout(); //TODO do we need this ?
+            
+            //first welcome label on the screen 
             _welcomeLabel = new Text(GUIConstants.FONT, WELCOME_TEXT + stateManager.GetSession().User.username);
             _welcomeLabel.ForeColor = Gadgeteer.Color.Black;
+            
+            //position the label on the screen
             Canvas.SetTop(_welcomeLabel, 50);
             Canvas.SetLeft(_welcomeLabel, 100);
 
+            // the same thing for the second message
             _scanAnEquipmentLabel = new Text(GUIConstants.FONT, SCAN_AN_EQUIPMENT_TEXT);
             _scanAnEquipmentLabel.ForeColor = Gadgeteer.Color.Red;
             Canvas.SetTop(_scanAnEquipmentLabel, 100);
@@ -73,7 +82,9 @@ namespace ilift.Controller
             
             display.WPFWindow.Child = canvas;
 
-            //Events 
+            // here we subscribe to the OnCardRead event 
+            // from the hardware and do the processing of the rfid tag in
+            // BindEquipment
             stateManager.OnCardRead += BindEquipment;
         }
 
@@ -88,14 +99,16 @@ namespace ilift.Controller
         }
 
         /// <summary>
-        /// Handler to rfidReader binding the equipment to the current session.
-        /// and changing the state to promt the user to select the exercise.
+        /// Handler to rfid reader, bindes the equipment to the current session
+        /// and changes the state to promt the user to select the exercise for the given equipment.
         /// </summary>
         /// <param name="tag">Rfid Tag</param>
         private void BindEquipment(string tag)
         {
             NetworkClient.GetEquipmentByTag(tag, equipment =>
             {
+                //if equipment is not null continue, otherwise display an error message 
+                //in the current screen.
                 if (equipment != null)
                 {
                     stateManager.GetSession().Equipment = equipment;

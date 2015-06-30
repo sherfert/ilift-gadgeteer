@@ -81,21 +81,37 @@ namespace ilift.Controller
             state.init();
         }
 
+        /// <summary>
+        /// Session object that persist through the different states
+        /// </summary>
+        /// <returns></returns>
         public Session GetSession()
         {
             return _session;
         }
 
+        /// <summary>
+        /// Access Accelerometer Hardware
+        /// </summary>
+        /// <returns>Accelerometer</returns>
         public Accelerometer GetAccelerometer()
         {
             return _hardwareController.GetAccelerometer();
         }
 
+        /// <summary>
+        /// Access Compass Hardware
+        /// </summary>
+        /// <returns>Compass</returns>
         public Compass GetCompass()
         {
             return _hardwareController.GetCompass();
         }
-
+        
+        /// <summary>
+        /// Access Tunes Hardware
+        /// </summary>
+        /// <returns>Tunes</returns>
         public Tunes GetTunes()
         {
             return _hardwareController.GetTunes();

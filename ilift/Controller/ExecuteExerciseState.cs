@@ -28,6 +28,12 @@ namespace ilift.Controller
         private ParameterizedRectangle _doneButton;
         private Text _doneLabel;
 
+        /// <summary>
+        /// Constructs the state that will 
+        /// </summary>
+        /// <param name="display"></param>
+        /// <param name="state"></param>
+        /// <param name="exercise"></param>
         public ExecuteExerciseState(DisplayTE35 display, StateManager state, AbstractExercise exercise)
             : base(display, state)
         {
@@ -45,9 +51,12 @@ namespace ilift.Controller
             int startX = LEFT_OFFSET;
             //display.WPFWindow.UpdateLayout(); //TODO do we need this?
             Font font = Resources.GetFont(Resources.FontResources.NinaB);
+            
+            //here we register the handler to update the screen 
             exercise.onRepetitionDone += UpdateScreen;
             exercise.onSubPatternDone += UpdateMessage;
             exercise.StartExercise();
+
             _repNumber = new Text(font, "0");
             _message = new Text(font, "");
             _message.ForeColor = Gadgeteer.Color.Red;
@@ -86,9 +95,12 @@ namespace ilift.Controller
             _message.TextContent = msg;
         }
 
-    
-
-        // TODO post the result to web server
+        /// <summary>
+        /// The handler of rectangle Done when clicked session is saved
+        /// and state is changed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="touchEventArgs"></param>
         private void OnDoneClicked(object sender, TouchEventArgs touchEventArgs)
         {
             Debug.Print("Touched");
@@ -110,8 +122,12 @@ namespace ilift.Controller
         }
 
 
+        /// <summary>
+        /// Whenever one repetition is done this handler is fired
+        /// </summary>
         public void UpdateScreen(Boolean hasGoodQuality)
         {
+
             if (hasGoodQuality)
             {
                 _repetitions++;
