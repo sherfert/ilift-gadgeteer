@@ -13,7 +13,7 @@ using Microsoft.SPOT.Presentation.Shapes;
 namespace ilift.Controller
 {
     /// <summary>
-    /// In this state the exercise for a chosen equipment can be chosen.
+    /// In this state the exercise for a chosen equipment can be selected.
     /// </summary>
     class SelectExerciseState : ExecutionState
     {
@@ -76,7 +76,11 @@ namespace ilift.Controller
                 int yOffset = i / 2 == 0 ? 0 : buttonHeight + GUIConstants.DEFAULT_SPACING;
 
                 exButtons[i] = new ParameterizedRectangle(buttonWidth, buttonHeight);
+
+                //add the given exercise as a single parameter to the ParameterizedRectangle with the default EXERCISE_KEY
+                //so that whenever the TouchDown event is fired we can access the exercise associated with the button
                 exButtons[i].AddParameter(EXERCISE_KEY, exercises[i]);
+                
                 exButtons[i].Fill = new SolidColorBrush(GUIConstants.NORMAL_BUTTON_COLOR);
                 exButtons[i].SetMargin(GUIConstants.DEFAULT_MARGIN);
                 buttonLabels[i] = new Text(GUIConstants.FONT, exercises[i].Name);
@@ -89,6 +93,8 @@ namespace ilift.Controller
 
                 canvas.Children.Add(exButtons[i]);
                 canvas.Children.Add(buttonLabels[i]);
+
+                //add the handler to TouchDown event of the Rectangle 
                 exButtons[i].TouchDown += ExerciseSelectedHandler;
             }
 

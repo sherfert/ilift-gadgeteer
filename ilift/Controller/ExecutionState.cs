@@ -5,7 +5,7 @@ using Microsoft.SPOT.Presentation.Controls;
 
 namespace ilift.Controller
 {
-    /** An abstract class for all states of the mastermind application.
+    /** An abstract class for all states of the ilift application.
      */
     public abstract class ExecutionState
     {

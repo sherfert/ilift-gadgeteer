@@ -22,6 +22,11 @@ namespace ilift.Controller
         private ParameterizedRectangle _continueButton;
         private Text _continueLabel;
 
+        /// <summary>
+        /// Summary state that presents the number of repetitions and describes the hole session
+        /// </summary>
+        /// <param name="display"></param>
+        /// <param name="state"></param>
         public SummaryState(DisplayTE35 display, StateManager state)
             : base(display, state)
         {
@@ -80,6 +85,11 @@ namespace ilift.Controller
 
         }
 
+        /// <summary>
+        /// Handler on the Down event of Continue button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnContinueClicked(object sender, TouchEventArgs e)
         {
             stateManager.SwitchState(new SelectEquipmentState(display,stateManager));
