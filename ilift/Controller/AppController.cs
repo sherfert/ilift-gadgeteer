@@ -95,5 +95,10 @@ namespace ilift.Controller
         {
             return _hardwareController.GetCompass();
         }
+
+        public Tunes GetTunes()
+        {
+            return _hardwareController.GetTunes();
+        }
     }
 }
