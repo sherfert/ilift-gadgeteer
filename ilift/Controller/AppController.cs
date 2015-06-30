@@ -5,11 +5,11 @@ using Microsoft.SPOT;
 
 namespace ilift.Controller
 {
-    /** The game controller maps actual hardware events to logical GUI events.
-     * It therefore implements the StateManager interface.
-     * 
-     * It is responsible for managing the current state and changing states.
-     */
+    /// <summary>
+    /// The game controller maps actual hardware events to logical GUI events.
+    /// It therefore implements the StateManager interface. 
+    /// It is responsible for managing the current state and changing states.
+    /// </summary>
     public class AppController : StateManager
     {
         // Constants for GUI placements
@@ -30,6 +30,9 @@ namespace ilift.Controller
         //Session 
         private Session _session = new Session();
 
+        /// <summary>
+        /// the hardware controller 
+        /// </summary>
         public HardwareController HardwareController
         {
             get { return _hardwareController; }
