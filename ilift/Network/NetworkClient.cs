@@ -19,7 +19,7 @@ namespace ilift.Network
     public class NetworkClient
     {
         //the address of the REST service
-        public const string ADDRESS = "http://192.168.43.245:8080/ilift/";
+        public const string ADDRESS = "http://192.168.43.181:8080/ilift/";
         //login credentials wifi
         private const string SSID = "AndroidAP";
         private const string KEY = "tk3-umundo";

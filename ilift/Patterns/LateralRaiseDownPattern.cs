@@ -7,8 +7,8 @@ namespace ilift.Patterns
     {
         private const double LEFT_BOUND = -0.1;
         private const double RIGHT_BOUND = -0.2;
-        private const double Y_POSITION = 0.38;
-        private const double Z_POSITION = 1.1;
+        private const double Y_POSITION = 0.40;
+        private const double Z_POSITION = 0.70;
 
         public event ActionDelegate onActionDone;
 
