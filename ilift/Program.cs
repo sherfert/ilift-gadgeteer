@@ -11,7 +11,6 @@ using Microsoft.SPOT.Presentation.Controls;
 using Microsoft.SPOT.Presentation.Media;
 using Microsoft.SPOT.Presentation.Shapes;
 using Microsoft.SPOT.Touch;
-
 using Gadgeteer.Networking;
 using GT = Gadgeteer;
 using GTM = Gadgeteer.Modules;
@@ -71,6 +70,12 @@ namespace ilift
         public DisplayTE35 GetDisplay()
         {
             return displayTE35;
+        }
+
+
+        public Tunes GetTunes()
+        {
+            return tunes;
         }
     }
 }

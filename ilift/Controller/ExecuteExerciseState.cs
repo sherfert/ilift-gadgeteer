@@ -21,7 +21,9 @@ namespace ilift.Controller
         private const int LEFT_OFFSET = 10;
         // For exercise state
         protected Text _repNumber;
-        protected int count;
+        protected Text _message;
+        protected int _repetitions;
+        protected int _badRepetitions;
 
         private ParameterizedRectangle _doneButton;
         private Text _doneLabel;
@@ -35,7 +37,8 @@ namespace ilift.Controller
         // Put all Gui drawing init codes here
         public override void init()
         {
-            count = 0;
+            _repetitions = 0;
+            _badRepetitions = 0;
             int buttonWidth = (int)(display.Width * 0.40);
             int buttonHeight = (int)(display.Height * 0.15);
             int startY = 2 * buttonHeight;
@@ -43,10 +46,16 @@ namespace ilift.Controller
             //display.WPFWindow.UpdateLayout(); //TODO do we need this?
             Font font = Resources.GetFont(Resources.FontResources.NinaB);
             exercise.onRepetitionDone += UpdateScreen;
+            exercise.onSubPatternDone += UpdateMessage;
             exercise.StartExercise();
             _repNumber = new Text(font, "0");
+            _message = new Text(font, "");
+            _message.ForeColor = Gadgeteer.Color.Red;
             Canvas.SetTop(_repNumber, display.Height / 3);
             Canvas.SetLeft(_repNumber, display.Width / 2);
+
+            Canvas.SetTop(_message, (display.Height / 3) + 20);
+            Canvas.SetLeft(_message, (display.Width / 2) - 20);
 
             // Create a cancel button
             _doneButton = new ParameterizedRectangle(2 * buttonWidth + SPACING, buttonHeight);
@@ -68,8 +77,16 @@ namespace ilift.Controller
             canvas.Children.Add(_doneLabel);
 
             canvas.Children.Add(_repNumber);
+            canvas.Children.Add(_message);
             display.WPFWindow.Child = canvas;
         }
+
+        private void UpdateMessage(string msg)
+        {
+            _message.TextContent = msg;
+        }
+
+    
 
         // TODO post the result to web server
         private void OnDoneClicked(object sender, TouchEventArgs touchEventArgs)
@@ -77,10 +94,11 @@ namespace ilift.Controller
             Debug.Print("Touched");
             exercise.StopExercise();
 
-            if (count != 0)
+            if (_repetitions + _badRepetitions != 0)
             {
                 Session session = stateManager.GetSession();
-                session.Repetitions = count;
+                session.Repetitions = _repetitions;
+                session.BadRepetitions = _badRepetitions;
                 Network.NetworkClient.PostSession(session);
                 stateManager.SwitchState(new SummaryState(display, stateManager));
             }
@@ -91,10 +109,19 @@ namespace ilift.Controller
             
         }
 
-        public void UpdateScreen()
+
+        public void UpdateScreen(Boolean hasGoodQuality)
         {
-            count++;
-            _repNumber.TextContent = count.ToString();
+            if (hasGoodQuality)
+            {
+                _repetitions++;
+            }
+            else
+            {
+                _badRepetitions++;
+            }
+           
+           _repNumber.TextContent = (_repetitions + _badRepetitions).ToString();
         }
 
         public override void finish()

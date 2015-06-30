@@ -91,7 +91,7 @@ namespace ilift.Controller
         {
             Canvas.SetLeft(_timerLabel, 100);
             _timerLabel.TextContent = "Calibrating...";
-            exercise.Calibrate(stateManager.GetHardwareController().GetAccelerometer());
+            exercise.Initialize(stateManager.GetHardwareController().GetAccelerometer(), stateManager.GetHardwareController().GetTunes());
 
             // TODO switch to next screen
             stateManager.SwitchState(new ExecuteExerciseState(display, stateManager, exercise));

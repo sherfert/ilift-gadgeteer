@@ -32,5 +32,11 @@ namespace ilift
         /// </summary>
         /// <returns></returns>
         Compass GetCompass();
+
+        /// <summary>
+        /// Gets the tunes
+        /// </summary>
+        /// <returns></returns>
+        Tunes GetTunes();
     }
 }
