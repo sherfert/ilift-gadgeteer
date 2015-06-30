@@ -10,6 +10,10 @@ namespace ilift.Model
         public String rfidTag;
         public String username;
 
+        /// <summary>
+        /// Constructs a user out of hashtable 
+        /// </summary>
+        /// <param name="hashtable"></param>
         public User(Hashtable hashtable)
         {
             id = (long) hashtable["id"];
@@ -19,7 +23,10 @@ namespace ilift.Model
         }
 
 
-
+        /// <summary>
+        /// Hashtable representation of this user
+        /// </summary>
+        /// <returns></returns>
         internal object ConstructHashtable()
         {
             Hashtable hashtable = new Hashtable();
