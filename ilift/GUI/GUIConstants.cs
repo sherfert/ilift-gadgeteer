@@ -4,6 +4,9 @@ using Microsoft.SPOT.Presentation.Media;
 
 namespace ilift.GUI
 {
+    /// <summary>
+    /// Represents some default constants for different GUI elements
+    /// </summary>
     public class GUIConstants
     {
         public const int DEFAULT_MARGIN = 10;
