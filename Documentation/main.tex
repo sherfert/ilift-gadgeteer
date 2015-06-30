@@ -80,5 +80,24 @@ Finally, the user can continue and perform more exercises and log out from the s
 
 \section{Implementation}
 
+First, we are going to describe what components make up our system and how they interact. Then we are describing each component in an own sub-section.
+
+\subsection{Components}
+The components that play together to build our application are:
+\begin{itemize}
+	\item the .NET Gadgeteer, functioning as a bracelet during the workout sessions.
+	\item a web server that saves the workout information 
+	\item  a web client that and displays all information in a table and graphs.
+\end{itemize}
+
+Both the Gadgeteer and the client access the server that offers a HTTP RESTful interface. The Gadgeteer requests data of available exercises  uploads the session information ...
+
+%and can be accessed from the Gadgeteer (uploading) and from a web client.
+%accesses the server
+
+\subsection{.NET Gadgeteer}
+\subsection{Web server}
+\subsection{Web client}
+
 
 \end{document}
