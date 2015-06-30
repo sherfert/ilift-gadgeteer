@@ -10,6 +10,7 @@ namespace ilift.Patterns
         private IActionPattern currentPattern;
 
         public event ActionDelegate onActionDone;
+        public event ActionDelegate onSubPatternDone;
 
         public ComplexPattern()
         {
@@ -34,8 +35,9 @@ namespace ilift.Patterns
 
         }
 
-        private void nextPattern()
+        private void nextPattern(Quality actionQuality, String msg)
         {
+            onSubPatternDone(actionQuality, msg);
             int next = subPatterns.IndexOf(currentPattern) + 1;
             if (next < subPatterns.Count)
                 currentPattern = (IActionPattern)subPatterns[next];
@@ -47,8 +49,8 @@ namespace ilift.Patterns
 
         private void repetitionDone()
         {
-            currentPattern = (IActionPattern)subPatterns[0];
-            onActionDone();
+            currentPattern = (IActionPattern)subPatterns[0];            
+            onActionDone(Quality.BAD,"");
         }
     }
 }

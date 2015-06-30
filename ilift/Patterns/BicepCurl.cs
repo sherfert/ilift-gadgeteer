@@ -18,7 +18,7 @@ namespace ilift.Patterns
             bicepCurlPattern.addPattern(new CurlDownPattern());
             bicepCurlPattern.addPattern(new CurlUpPattern());
             bicepCurlPattern.onActionDone += onRepetitionDoneHandler;
-      
+            bicepCurlPattern.onSubPatternDone += onSubPatternDoneHandler;
         }
 
         public override void ProcessData(double x, double y, double z)

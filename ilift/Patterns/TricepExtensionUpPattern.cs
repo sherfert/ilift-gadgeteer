@@ -24,22 +24,9 @@ namespace ilift.Patterns
             {
                
                 //Debug.Print("Accelerometer:\tx: " + x + "\ty: " + y + "\tz: " + z + "\n");
-             if ( x > RIGHT_BOUND)
-            {
-                Debug.Print("Too much right!");
-                onActionDone();
-
-            }
-             else if (z > Z_POSITION && y < Y_POSITION && x < LEFT_BOUND)
-             {
-                 Debug.Print("Too much left!");
-                 onActionDone();
-             }
-             else
-             {
-                 Debug.Print("Up!!!");
-                 onActionDone();
-             }
+                Debug.Print("Up!!!");
+                onActionDone(Quality.GOOD, "");
+            
 
             }
 

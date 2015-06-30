@@ -17,23 +17,20 @@ namespace ilift.Patterns
             //&& x < RIGHT_BOUND && x > LEFT_BOUND
             if (z > Z_POSITION && y > Y_POSITION )
             {
-                Debug.Print("Down!!!");
-                //Debug.Print("Accelerometer:\tx: " + x + "\ty: " + y + "\tz: " + z + "\n");
-                onActionDone();
-
-            }
-            else if (z > Z_POSITION && y > Z_POSITION && x > LEFT_BOUND && x < RIGHT_BOUND)
-            {
-                Debug.Print("Too much right!");
-                onActionDone();
-
-            }
-            else if (z > Z_POSITION && y > Y_POSITION && x > LEFT_BOUND && x < RIGHT_BOUND)
-            {
-                Debug.Print("Too much left!");
-                onActionDone();
-            }
-            
+                if (x > 0.1)
+                {
+                    Debug.Print("Too much rotation up!");
+                    onActionDone(Quality.BAD, "Too much rotation up!");
+                } else if(x < -0.1) {
+                    Debug.Print("Too much rotation down!");
+                    onActionDone(Quality.BAD, "Too much rotation down!");
+                }
+                else
+                {
+                    Debug.Print("Down!!!");
+                    onActionDone(Quality.GOOD, "");
+                }
+            }           
         }
     }
 }

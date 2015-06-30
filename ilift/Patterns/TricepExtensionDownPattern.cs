@@ -5,10 +5,10 @@ namespace ilift.Patterns
 {
     public class TricepExtensionDownPattern : IActionPattern
     {
-        private const double LEFT_BOUND = -0.08;
-        private const double RIGHT_BOUND = 0.08;
+        
+        private const double FRONT_BOUND = 0.30;
         private const double X_POSITION = 0.1;
-        private const double Y_POSITION = -0.1;
+        private const double Y_POSITION = -0.05;
         private const double Z_POSITION = 0.9;
 
         public event ActionDelegate onActionDone;
@@ -21,21 +21,16 @@ namespace ilift.Patterns
         {
             if (z > Z_POSITION && y > Y_POSITION && x < X_POSITION /*&& x < RIGHT_BOUND && x > LEFT_BOUND*/)
             {
-                Debug.Print("Down!!!");
-                //Debug.Print("Accelerometer:\tx: " + x + "\ty: " + y + "\tz: " + z + "\n");
-                onActionDone();
+              
+                    Debug.Print("Down!!!");
+                    //Debug.Print("Accelerometer:\tx: " + x + "\ty: " + y + "\tz: " + z + "\n");
+                    onActionDone(Quality.GOOD, "");
+                
+
+
 
             }
-            else if (z > Z_POSITION && y > Y_POSITION && x > RIGHT_BOUND)
-            {
-                Debug.Print("Too much right!");
-                onActionDone();
-            }
-            else if (z > Z_POSITION && y > Y_POSITION && x < LEFT_BOUND)
-            {
-                Debug.Print("Too much left!");
-                onActionDone();
-            }
+
         }
     }
 }

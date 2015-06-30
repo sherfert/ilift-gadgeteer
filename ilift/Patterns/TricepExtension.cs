@@ -1,5 +1,6 @@
 using System;
 using Microsoft.SPOT;
+using Gadgeteer.Modules.GHIElectronics;
 
 namespace ilift.Patterns
 {
@@ -13,6 +14,7 @@ namespace ilift.Patterns
             tricepExtensionPattern.addPattern(new TricepExtensionUpPattern());
             tricepExtensionPattern.addPattern(new TricepExtensionDownPattern());
             tricepExtensionPattern.onActionDone += onRepetitionDoneHandler;
+            tricepExtensionPattern.onSubPatternDone += onSubPatternDoneHandler;
 
         }
 

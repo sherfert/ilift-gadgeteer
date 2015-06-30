@@ -1,5 +1,6 @@
 using System;
 using Microsoft.SPOT;
+using Gadgeteer.Modules.GHIElectronics;
 
 namespace ilift.Patterns
 {
@@ -14,6 +15,7 @@ namespace ilift.Patterns
             lateralRaisePattern.addPattern(new LateralRaiseDownPattern());
             lateralRaisePattern.addPattern(new LateralRaiseUpPattern());
             lateralRaisePattern.onActionDone += onRepetitionDoneHandler;
+            lateralRaisePattern.onSubPatternDone += onSubPatternDoneHandler;
 
         }
 
