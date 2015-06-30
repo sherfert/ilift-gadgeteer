@@ -12,7 +12,8 @@ namespace ilift.Model
         private long id;
         private User user;
         private Exercise exercise;
-        private long repetitions;
+        private long repetitions = 0;
+        private long badRepetitions = 0;
         private Equipment equipment;
         
         /// <summary>
@@ -50,6 +51,8 @@ namespace ilift.Model
             hashtable.Add("exercise", exercise.ConstructHashtable());
             hashtable.Add("equipment", equipment.ConstructHashTable());
             hashtable.Add("repetitions", repetitions);
+            hashtable.Add("badRepetitions", BadRepetitions);
+
             return hashtable;
         }
 
@@ -96,6 +99,15 @@ namespace ilift.Model
         {
             get { return id; }
             set { id = value; }
+        }
+
+        /// <summary>
+        /// Number of not good repetitions
+        /// </summary>
+        public long BadRepetitions
+        {
+            get { return badRepetitions; }
+            set { badRepetitions = value; }
         }
     }
 }
