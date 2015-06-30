@@ -93,6 +93,43 @@ The components that play together to build our application are:
 Both the Gadgeteer and the web client access the server that offers a HTTP RESTful interface. The Gadgeteer requests data of available exercises  and uploads the session information. The web client requests this information and displays it in a table and graphically.
 
 \subsection{.NET Gadgeteer}
+.NET Gadgeteer as mentioned it is used as a bracelet during the workout session, being so it consists of several components both hardware wise so as software wise. 
+
+\subsubsection{Hardware Components}
+
+\begin{description}
+\item[Accelerometer] plays the main role in our application. After prompting the user to get ready to start a workout, we calibrate the sensor; afterwards we read continuously from the sensor. This sensor data is processed to determine correct performance of the exercise by the software.
+\item[WiFi Module] is used immediately when the application starts, connecting to the wireless hot-spot created internally for the components of application (like REST services). 
+\item[RFID Reader and RFID Tags] helps us identifying different users and different kind of equipment.
+\item[Display and Tunes Module] are used to give live feedback to the user. We display the numbers of repetitions, the user can select the exercise that and other visual feedback as mentioned in the application flow, and we also use the tunes module to play different notes depending on the correctness of exercise. 
+\item[Other modules] used include the Battery module
+\end{description}
+
+\subsubsection{Software Architecture}
+
+We organized our software code in different packages separating different concerns. Some of them deserve more focus than the others; we will list them all but describe thoroughly the important ones:
+
+\begin{description}
+\item[Controller] represent the high level policy of the application. Here we have the \textit{AppController} class which represent the state manager; it contains the Session which is mutated throughout the application flow. The main thing this AppController does is the switching between different \textit{ExectuionStates}. It starts with the \textit{WelcomeState} where it prompts the user to scan her RFID card; and it ends with the \textit{SummaryState} where it gives a visual feedback about the number of repetitions done. Every \textit{ExecutionState} has access to hardware events and modules: it has the ability to paint the display and also to listen and subscribe for different hardware events which can be of interest for that particular state. For instance \textit{SelectEquipmentState} is interested in the RFID Reader events so that it can process further with identifying the particular equipment for that particular scanned RFID. 
+
+Every state is an \textit{ExecutionState} so it contains an \textit{init()} and \textit{finish()} method which are called every time the \textit{AppController} switches between states: where first the \textit{finish()} of the old state is invoked and afterwards the \textit{init()} of the new state. Every state paints the display and subscribes for the interested events in the \textit{init()} and unsubscribes from them in \textit{finish()}.
+
+\item[GUI] contains two different classes. One of them used for holding some global constants that are used from different states for painting GUI related stuffs. The other class \textit{ParameterizedRectangle} adds behavior to the existing Rectangle class provided by .NET Gadgeeter library. The only behavior it adds is the possibility to attach data to a GUI Rectangle; so that every time we paint a Rectangle which always represent a button in our case, we also associate different relevant data.  
+
+\item[Model] represents the data model of the whole application. See the Entity Relationship Diagram. 
+
+\item[Network] \textit{NetworkClient} has the responsibility to connect to the WiFi and also encapsulates all the REST invocations that are needed from the .NET Gadgeeter which are: 
+\begin{itemize}
+	\item Get User by RFID
+	\item Get Equipment by RFID 
+	\item Post Session
+\end{itemize}
+
+
+\item[Patterns] 
+
+\end{description}
+
 \subsection{Web server}
 
 The server is written in Java and provides a simple RESTful HTTP interface. The libraries used are \texttt{jersey} to provide the web services, \texttt{gson} to serialize and deserialize objects, \texttt{eclipselink} as an ORM and \texttt{h2} as a SQL implementation to create and access databases.
