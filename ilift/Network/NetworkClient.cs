@@ -16,7 +16,7 @@ namespace ilift.Network
 
     public class NetworkClient
     {
-        public const string ADDRESS = "http://192.168.43.245:8080/ilift/";
+        public const string ADDRESS = "http://192.168.43.181:8080/ilift/";
         private const string SSID = "AndroidAP";
         private const string KEY = "tk3-umundo";
 

@@ -7,15 +7,15 @@ namespace ilift.Patterns
     {
         private const double LEFT_BOUND = 0.0;
         private const double RIGHT_BOUND = 0.2;
-        private const double Y_THRESHOLD = 0.1;
-        private const double Z_POSITION = 1.15;
+        private const double Y_THRESHOLD = 0.08;
+        private const double Z_POSITION = 0.9;
 
         public event ActionDelegate onActionDone;
         
         public void processAccelData(double x, double y, double z)
         {
             // && x < RIGHT_BOUND && x > LEFT_BOUND && x < RIGHT_BOUND
-            if (z < Z_POSITION && y < Y_THRESHOLD)
+            if (z > Z_POSITION && y < Y_THRESHOLD)
             {
                 Debug.Print("Up!!!");
                 //Debug.Print("Accelerometer:\tx: " + x + "\ty: " + y + "\tz: " + z + "\n");
