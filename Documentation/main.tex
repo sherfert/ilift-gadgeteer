@@ -10,14 +10,29 @@
 
 \section{Problem statement}
 
-%TODO just copied from what we submitted in the beginning of the project
-When going to the gym, one often faces problems like keeping count of repetitions and tracking the equipment and weight used each time. Another problem is keeping track of your overall progress and using this information to improve and make training plans.
 
-Our idea is approaching this by developing an application that integrates into the workout with minimal user interaction. The general flow of events would be a user picking up a piece of equipment (e.g. a dumbbell 10 kg), choosing the exercise he/she wants to do (e.g. biceps curl) on a touch screen, performing the exercise, and putting the equipment back. The system should detect and count the repetitions and save the information in an online service, that can be accessed later with a website.
+When going to the gym, one often faces problems that are hard to solve without ubiquitous technology. In order to make progress, it is essential to keep track of
+\begin{itemize}
+	\item what equipment you used,
+	\item how much weight you used,
+	\item what exercises you did,
+	\item how many repetitions you did, and
+	\item how well you performed the exercise.
+\end{itemize}
 
-To achieve this, we want to use the .NET Gadgeteer and attach it as a kind of "bracelet" to the user. The display should be fixed on the forearm and there should be an RFID reader in a glove. The equipment pieces need RFID tags with associated information about type, weight, and available exercises. The bracelet needs to include a gyroscope and accelerometer to recognize repetitions with different patterns based on the exercise performed by the user. The Gadgeteer will communicate with a web service that persists the collected information. This information can be later accessed with a web application. The technology used for this is a Java EE application with RESTful services.
+The conventional solution would be to use pen and paper to write down your sessions, or use your smartphone for the same purpose. Usually people are too lazy to write down information about each set in detail and just write down how many sets they did with what weight, at most.
+
+More problems with this are that you have keep track manually which hinders the training flow, and that you have to look for the right information in a probably suboptimal representation (not a table) on your paper. Some graphs displaying different statistics would also be very helpful so you can see your progress in a fast and descriptive way.
+
+In addition, when using a paper, you don't have access to your statistics anywhere outside of the gym. If you want to train somewhere else, like at home, in a different city, or outside, that can be a big obstacle.
+
+In order to know how well you performed each exercise you need a lot of experience or advice from a professional. Sadly, few gyms provide personal trainers that assist your, or that service is very expensive. As a novice and without assistance people often perform the exercises in a bad way that can sometimes even hurt them. Event with some experience performance can degrade over the course of your whole training and it would be nice being notified when that happens, so you can concentrate again on performing the exercise correctly.
 
 \section{Solution}
+
+%TODO just copied from what we submitted in the beginning of the project
+%Our idea is approaching this by developing an application that integrates into the workout with minimal user interaction. The general flow of events would be a user picking up a piece of equipment (e.g. a dumbbell 10 kg), choosing the exercise he/she wants to do (e.g. biceps curl) on a touch screen, performing the exercise, and putting the equipment back. The system should detect and count the repetitions and save the information in an online service, that can be accessed later with a website.
+%To achieve this, we want to use the .NET Gadgeteer and attach it as a kind of "bracelet" to the user. The display should be fixed on the forearm and there should be an RFID reader in a glove. The equipment pieces need RFID tags with associated information about type, weight, and available exercises. The bracelet needs to include a gyroscope and accelerometer to recognize repetitions with different patterns based on the exercise performed by the user. The Gadgeteer will communicate with a web service that persists the collected information. This information can be later accessed with a web application. The technology used for this is a Java EE application with RESTful services.
 
 \section{Implementation}
 
