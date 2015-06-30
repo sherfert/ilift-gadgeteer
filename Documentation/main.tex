@@ -90,13 +90,17 @@ The components that play together to build our application are:
 	\item  a web client that and displays all information in a table and graphs.
 \end{itemize}
 
-Both the Gadgeteer and the client access the server that offers a HTTP RESTful interface. The Gadgeteer requests data of available exercises  uploads the session information ...
-
-%and can be accessed from the Gadgeteer (uploading) and from a web client.
-%accesses the server
+Both the Gadgeteer and the web client access the server that offers a HTTP RESTful interface. The Gadgeteer requests data of available exercises  and uploads the session information. The web client requests this information and displays it in a table and graphically.
 
 \subsection{.NET Gadgeteer}
 \subsection{Web server}
+
+The server is written in Java and provides a simple RESTful HTTP interface. The libraries used are \texttt{jersey} to provide the web services, \texttt{gson} to serialize and deserialize objects, \texttt{eclipselink} as an ORM and \texttt{h2} as a SQL implementation to create and access databases.
+
+The package \texttt{application} provides a main class, \texttt{services} contains classes to provide the different web services, \texttt{persistence} provides access to the database and a method in \texttt{DataManager} to insert some default data into the database, that we are using, and \texttt{data} contains our data model, where classes have JPA annotations so they can be stored in a database.
+
+%TODO include UML class diagram of the data model.
+
 \subsection{Web client}
 
 
