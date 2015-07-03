@@ -108,7 +108,7 @@ namespace ilift.Patterns
         /// Handler for sub pattern  done within exercise.
         /// Takes as arquement the quality of the exercise and the message passed for display. 
         /// Message related to the quality of the exercise.
-        /// If is good quality plays positive tune.
+        /// If sub pattern is bad quality plays negative tune.
         /// </summary>
         /// <param name="subPatternQuality"></param>
         /// <param name="msg"></param>
