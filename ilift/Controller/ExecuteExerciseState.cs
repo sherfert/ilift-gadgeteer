@@ -49,35 +49,35 @@ namespace ilift.Controller
             int buttonHeight = (int)(display.Height * 0.15);
             int startY = 2 * buttonHeight;
             int startX = LEFT_OFFSET;
+            int bigButtonWidth = (int)(display.Width * GUIConstants.BIG_BUTTON_WIDTH_PERCENTAGE);
             
             Font font = Resources.GetFont(Resources.FontResources.NinaB);
-            
+            Font counterFont = Resources.GetFont(Resources.FontResources.counter);
             //here we register the handler to update the screen 
             exercise.onRepetitionDone += UpdateScreen;
             exercise.onSubPatternDone += UpdateMessage;
             exercise.StartExercise();
 
-            _repNumber = new Text(font, "0");
+            _repNumber = new Text(counterFont, "0");
             _message = new Text(font, "");
             _message.ForeColor = Gadgeteer.Color.Red;
             Canvas.SetTop(_repNumber, display.Height / 3);
-            Canvas.SetLeft(_repNumber, display.Width / 2);
+            Canvas.SetLeft(_repNumber, (display.Width / 2) - 20);
 
-            Canvas.SetTop(_message, (display.Height / 3) + 20);
-            Canvas.SetLeft(_message, (display.Width / 2) - 20);
+            Canvas.SetTop(_message, 20);
+            Canvas.SetLeft(_message, (display.Width / 2) - 50);
 
             // Create a cancel button
             _doneButton = new ParameterizedRectangle(2 * buttonWidth + SPACING, buttonHeight);
             _doneButton.Fill = new SolidColorBrush(DONE_BUTTON_COLOR);
 
-           _doneButton.SetMargin(GUI.GUIConstants.DEFAULT_MARGIN);
             Canvas.SetTop(_doneButton, startY + 2 * (buttonHeight + SPACING));
-            Canvas.SetLeft(_doneButton, startX);
+            Canvas.SetLeft(_doneButton, display.Width / 2 - (bigButtonWidth / 2));
 
             _doneLabel = new Text(font, DONE_TEXT);
             _doneLabel.ForeColor = Gadgeteer.Color.Black;
             Canvas.SetTop(_doneLabel, startY + buttonHeight / 2 +
-                2 * (buttonHeight + SPACING));
+                2 * (buttonHeight + SPACING) - GUIConstants.DEFAULT_MARGIN);
             Canvas.SetLeft(_doneLabel, startX + DONE_LABEL_OFFSET);
 
             _doneButton.TouchDown += OnDoneClicked;

@@ -35,16 +35,17 @@ namespace ilift.Controller
         {
             // Init GUI
             display.WPFWindow.UpdateLayout();
-            Font font = Resources.GetFont(Resources.FontResources.NinaB);
+            //Font font = Resources.GetFont(Resources.FontResources.NinaB);
+            Font font = Resources.GetFont(Resources.FontResources.welcome_font);
             _welcomeLabel = new Text(font, WELCOME_TEXT);
             _welcomeLabel.ForeColor = Gadgeteer.Color.Black;
             Canvas.SetTop(_welcomeLabel, 50);
-            Canvas.SetLeft(_welcomeLabel, 100);
+            Canvas.SetLeft(_welcomeLabel, 80);
 
             _scanYourCardLabel = new Text(font, SCAN_YOUR_CARD_TEXT);
             _scanYourCardLabel.ForeColor = Gadgeteer.Color.Red;
             Canvas.SetTop(_scanYourCardLabel, 100);
-            Canvas.SetLeft(_scanYourCardLabel, 100);
+            Canvas.SetLeft(_scanYourCardLabel, 80);
 
             canvas.Children.Add(_welcomeLabel);
             canvas.Children.Add(_scanYourCardLabel);
