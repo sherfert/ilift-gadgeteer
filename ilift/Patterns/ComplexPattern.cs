@@ -4,6 +4,9 @@ using System.Collections;
 
 namespace ilift.Patterns
 {
+    /// <summary>
+    /// Class for complex pattern, which is composed of patterns
+    /// </summary>
     class ComplexPattern:IActionPattern
     {
         private ArrayList subPatterns;
@@ -17,6 +20,12 @@ namespace ilift.Patterns
             subPatterns = new ArrayList();
         }
 
+        /// <summary>
+        /// Passes the accelerometer arguments to the current pattern.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public void processAccelData(double x, double y, double z)
         {
             if (currentPattern != null)
@@ -26,7 +35,10 @@ namespace ilift.Patterns
             }
         }
 
-        // TODO Find a way to add ComplexPattern as pattern
+        /// <summary>
+        /// Method for adding pattern to pattern list and adding nextPattern Handler to it.
+        /// </summary>
+        /// <param name="pattern"></param>
         public void addPattern(IActionPattern pattern)
         {
             pattern.onActionDone += nextPattern;
@@ -35,6 +47,12 @@ namespace ilift.Patterns
 
         }
 
+        /// <summary>
+        /// Chains patterns by going to the next pattern in the pattern array list.
+        /// If pattern is last fire repetition done.
+        /// </summary>
+        /// <param name="actionQuality"></param>
+        /// <param name="msg"></param>
         private void nextPattern(Quality actionQuality, String msg)
         {
             onSubPatternDone(actionQuality, msg);
@@ -46,7 +64,11 @@ namespace ilift.Patterns
                 repetitionDone();
             }
         }
-
+        /// <summary>
+        /// Called when repetition is done, set the first pattern as the current pattern.
+        /// The arguement passed in actionDone is disregarded as only sub patterns quality is evaluated.
+        /// 
+        /// </summary>
         private void repetitionDone()
         {
             currentPattern = (IActionPattern)subPatterns[0];            

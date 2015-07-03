@@ -5,16 +5,25 @@ namespace ilift.Patterns
 {
     class LateralRaiseDownPattern : IActionPattern
     {
-        private const double LEFT_BOUND = -0.1;
-        private const double RIGHT_BOUND = -0.2;
+        //Hardcoded values of the pattern, for position and constraint
         private const double Y_POSITION = 0.40;
         private const double Z_POSITION = 0.70;
-
+        /// <summary>
+        /// fired when pattern is recognised
+        /// </summary>
         public event ActionDelegate onActionDone;
 
+        /// <summary>
+        /// Process the accelometer data to see if lateral raise down pattern is recognised
+        /// if recognised fire onActionDone Event
+        /// check also if pattern is correctly done
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public void processAccelData(double x, double y, double z)
         {
-            //&& x < RIGHT_BOUND && x > LEFT_BOUND
+            
             if (z > Z_POSITION && y > Y_POSITION )
             {
                 if (x > 0.1)
