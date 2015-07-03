@@ -5,13 +5,19 @@ using Gadgeteer.Modules.GHIElectronics;
 
 namespace ilift.Patterns
 {
-    //Wrapper class for BicepCurl Complex Pattern, perhaps could be considered an Exercise with an id?
+    /// <summary>
+    /// The Higher level bicep curl pattern class
+    /// </summary>
     public class BicepCurl : AbstractExercise
     {
-
-        //public event RepetitionDelegate onRepetitionDone;
+        /// <summary>
+        /// Contains subpatterns of bicep curl
+        /// </summary>
         private ComplexPattern bicepCurlPattern;
 
+        /// <summary>
+        /// Initialize all the subpatterns
+        /// </summary>
         public BicepCurl()
         {
             bicepCurlPattern = new ComplexPattern();
@@ -21,6 +27,13 @@ namespace ilift.Patterns
             bicepCurlPattern.onSubPatternDone += onSubPatternDoneHandler;
         }
 
+        /// <summary>
+        /// The function that determines if the action is valid by passing 
+        /// the data from accelerometer to subpattern 
+        /// </summary>
+        /// <param name="x"> The x coordinator of movement
+        /// <param name="y"> The y coordinator of movement
+        /// <param name="z"> The z coordinator of movement
         public override void ProcessData(double x, double y, double z)
         {
             bicepCurlPattern.processAccelData(x, y, z);
