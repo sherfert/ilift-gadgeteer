@@ -13,6 +13,11 @@ namespace ilift.Patterns
     public abstract class AbstractExercise
     {
         /// <summary>
+        /// Contains the Complex Pattern associated with the exercise
+        /// </summary>
+        protected ComplexPattern pattern;
+
+        /// <summary>
         /// Delegate for when repetition is done
         /// </summary>
         public event RepetitionDelegate onRepetitionDone;

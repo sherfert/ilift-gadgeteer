@@ -11,20 +11,15 @@ namespace ilift.Patterns
     public class BicepCurl : AbstractExercise
     {
         /// <summary>
-        /// Contains subpatterns of bicep curl
-        /// </summary>
-        private ComplexPattern bicepCurlPattern;
-
-        /// <summary>
         /// Initialize all the subpatterns
         /// </summary>
         public BicepCurl()
         {
-            bicepCurlPattern = new ComplexPattern();
-            bicepCurlPattern.addPattern(new CurlDownPattern());
-            bicepCurlPattern.addPattern(new CurlUpPattern());
-            bicepCurlPattern.onActionDone += onRepetitionDoneHandler;
-            bicepCurlPattern.onSubPatternDone += onSubPatternDoneHandler;
+            pattern = new ComplexPattern();
+            pattern.addPattern(new CurlDownPattern());
+            pattern.addPattern(new CurlUpPattern());
+            pattern.onActionDone += onRepetitionDoneHandler;
+            pattern.onSubPatternDone += onSubPatternDoneHandler;
         }
 
         /// <summary>
@@ -36,7 +31,7 @@ namespace ilift.Patterns
         /// <param name="z"> The z coordinator of movement
         public override void ProcessData(double x, double y, double z)
         {
-            bicepCurlPattern.processAccelData(x, y, z);
+            pattern.processAccelData(x, y, z);
         }
     }
 }

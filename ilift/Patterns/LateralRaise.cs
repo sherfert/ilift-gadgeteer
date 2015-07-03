@@ -9,21 +9,17 @@ namespace ilift.Patterns
     /// </summary>
     public class LateralRaise : AbstractExercise
     {
-        /// <summary>
-        /// Contains subpatterns of lateral raise
-        /// </summary>
-        private ComplexPattern lateralRaisePattern;
-
+        
         /// <summary>
         /// Initialize all the subpatterns
         /// </summary>
         public LateralRaise()
         {
-            lateralRaisePattern = new ComplexPattern();
-            lateralRaisePattern.addPattern(new LateralRaiseDownPattern());
-            lateralRaisePattern.addPattern(new LateralRaiseUpPattern());
-            lateralRaisePattern.onActionDone += onRepetitionDoneHandler;
-            lateralRaisePattern.onSubPatternDone += onSubPatternDoneHandler;
+            pattern = new ComplexPattern();
+            pattern.addPattern(new LateralRaiseDownPattern());
+            pattern.addPattern(new LateralRaiseUpPattern());
+            pattern.onActionDone += onRepetitionDoneHandler;
+            pattern.onSubPatternDone += onSubPatternDoneHandler;
 
         }
 
@@ -36,7 +32,7 @@ namespace ilift.Patterns
         /// <param name="z"> The z coordinator of movement
         public override void ProcessData(double x, double y, double z)
         {
-            lateralRaisePattern.processAccelData(x, y, z);
+            pattern.processAccelData(x, y, z);
         }
     }
 }

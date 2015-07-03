@@ -7,7 +7,7 @@ namespace ilift.Patterns
     /// <summary>
     /// Class for complex pattern, which is composed of patterns
     /// </summary>
-    class ComplexPattern:IActionPattern
+    public class ComplexPattern:IActionPattern
     {
         private ArrayList subPatterns;
         private IActionPattern currentPattern;

@@ -10,20 +10,15 @@ namespace ilift.Patterns
     public class TricepExtension:AbstractExercise
     {
         /// <summary>
-        /// Contains subpatterns of tricep extension
-        /// </summary>
-        private ComplexPattern tricepExtensionPattern;
-
-        /// <summary>
         /// Initialize all the subpatterns
         /// </summary>
         public TricepExtension()
         {
-            tricepExtensionPattern = new ComplexPattern();
-            tricepExtensionPattern.addPattern(new TricepExtensionUpPattern());
-            tricepExtensionPattern.addPattern(new TricepExtensionDownPattern());
-            tricepExtensionPattern.onActionDone += onRepetitionDoneHandler;
-            tricepExtensionPattern.onSubPatternDone += onSubPatternDoneHandler;
+            pattern = new ComplexPattern();
+            pattern.addPattern(new TricepExtensionUpPattern());
+            pattern.addPattern(new TricepExtensionDownPattern());
+            pattern.onActionDone += onRepetitionDoneHandler;
+            pattern.onSubPatternDone += onSubPatternDoneHandler;
 
         }
 
@@ -36,7 +31,7 @@ namespace ilift.Patterns
         /// <param name="z"> The z coordinator of movement
         public override void ProcessData(double x, double y, double z)
         {
-            tricepExtensionPattern.processAccelData(x, y, z);
+            pattern.processAccelData(x, y, z);
         }
     }
 }
