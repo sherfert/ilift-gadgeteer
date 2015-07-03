@@ -96,6 +96,7 @@ namespace ilift.Controller
 
                 //add the handler to TouchDown event of the Rectangle 
                 exButtons[i].TouchDown += ExerciseSelectedHandler;
+                buttonLabels[i].IsEnabled = false;
             }
 
             // Create a cancel button
@@ -113,7 +114,7 @@ namespace ilift.Controller
             Canvas.SetLeft(_cancelLabel, startX + GUIConstants.LOWER_BUTTON_LABEL_OFFSET);
 
             _cancelButton.TouchDown += OnCancelClicked;
-
+            _cancelLabel.IsEnabled = false;
             canvas.Children.Add(_cancelButton);
             canvas.Children.Add(_cancelLabel);
 

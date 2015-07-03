@@ -76,7 +76,7 @@ namespace ilift.Controller
             Canvas.SetLeft(_continueLabel, GUIConstants.LEFT_OFFSET + GUIConstants.LOWER_BUTTON_LABEL_OFFSET);
 
             _continueButton.TouchDown += OnContinueClicked;
-
+            _continueLabel.IsEnabled = false;
             canvas.Children.Add(_continueButton);
             canvas.Children.Add(_continueLabel);
 

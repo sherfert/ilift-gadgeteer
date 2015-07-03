@@ -76,6 +76,7 @@ namespace ilift.Controller
             Canvas.SetLeft(_logoutLabel, GUIConstants.LEFT_OFFSET + GUIConstants.LOWER_BUTTON_LABEL_OFFSET);
 
             _logoutButton.TouchDown += OnLogoutClicked;
+            _logoutLabel.IsEnabled = false;
 
             canvas.Children.Add(_logoutButton);
             canvas.Children.Add(_logoutLabel);

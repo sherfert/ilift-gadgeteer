@@ -47,7 +47,7 @@ namespace ilift.Controller
             _positionLabel = new Text(font, POSITION_TEXT);
 
             Canvas.SetTop(_positionLabel, 100);
-            Canvas.SetLeft(_positionLabel, 100);
+            Canvas.SetLeft(_positionLabel, 80);
             // TODO make the timer bigger
             _timerLabel = new Text(font, "");
             _timerLabel.ForeColor = Gadgeteer.Color.Red;
