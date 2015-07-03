@@ -28,11 +28,11 @@ namespace ilift.Patterns
             {
                 if (x > 0.1)
                 {
-                    Debug.Print("Too much rotation up!");
-                    onActionDone(Quality.BAD, "Too much rotation up!");
+                    Debug.Print("Too much rotation out!");
+                    onActionDone(Quality.BAD, "Too much rotation out!");
                 } else if(x < -0.1) {
-                    Debug.Print("Too much rotation down!");
-                    onActionDone(Quality.BAD, "Too much rotation down!");
+                    Debug.Print("Too much rotation in!");
+                    onActionDone(Quality.BAD, "Too much rotation in!");
                 }
                 else
                 {

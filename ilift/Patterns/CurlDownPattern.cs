@@ -34,14 +34,14 @@ namespace ilift.Patterns
 
                 if (x < RIGHT_BOUND)
                 {
-                    Debug.Print("Too much right!");
-                    onActionDone(Quality.BAD, "Too much right");
+                    Debug.Print("Too much left!");
+                    onActionDone(Quality.BAD, "Too much left");
 
                 }
                 else if (x > LEFT_BOUND)
                 {
-                    Debug.Print("Too much left!");
-                    onActionDone(Quality.BAD, "Too much left");
+                    Debug.Print("Too much right!");
+                    onActionDone(Quality.BAD, "Too much right");
                 }
                 else
                 {

@@ -43,6 +43,7 @@ namespace ilift.Controller
 
             StringBuilder sb = new StringBuilder();
             sb.Append(SUMMARY_START_TEXT);
+            sb.Append("\n");
             sb.Append(stateManager.GetSession().Repetitions + stateManager.GetSession().BadRepetitions).Append(" ");
             sb.Append(stateManager.GetSession().Exercise.Name).Append(", ");
             sb.Append(stateManager.GetSession().Equipment.Type.Name).Append(", ");
