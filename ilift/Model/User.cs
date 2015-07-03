@@ -4,6 +4,9 @@ using Microsoft.SPOT;
 
 namespace ilift.Model
 {
+    /// <summary>
+    /// Represents a user
+    /// </summary>
     public class User
     {
         public long id;
