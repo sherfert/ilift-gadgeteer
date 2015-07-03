@@ -38,18 +38,18 @@ namespace ilift.Controller
         public override void init()
         {
             Font font = Resources.GetFont(Resources.FontResources.NinaB);
-            
+            Font counterFont = Resources.GetFont(Resources.FontResources.counter);
             _execTitleLabel = new Text(font, stateManager.GetSession().Exercise.Name);
             
             Canvas.SetTop(_execTitleLabel, 50);
-            Canvas.SetLeft(_execTitleLabel, 100);
+            Canvas.SetLeft(_execTitleLabel, 120);
 
             _positionLabel = new Text(font, POSITION_TEXT);
 
             Canvas.SetTop(_positionLabel, 100);
-            Canvas.SetLeft(_positionLabel, 80);
+            Canvas.SetLeft(_positionLabel, 100);
             // TODO make the timer bigger
-            _timerLabel = new Text(font, "");
+            _timerLabel = new Text(counterFont, "");
             _timerLabel.ForeColor = Gadgeteer.Color.Red;
             
 

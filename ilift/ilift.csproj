@@ -145,8 +145,11 @@
     <None Include="Program.gadgeteer.diagram">
       <DependentUpon>Program.gadgeteer</DependentUpon>
     </None>
+    <None Include="Resources\awesome.tinyfnt" />
+    <None Include="Resources\counter.tinyfnt" />
     <None Include="Resources\NinaB.tinyfnt" />
     <None Include="Resources\small.tinyfnt" />
+    <None Include="Resources\welcome_font.tinyfnt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\GHI_Modules\Tunes\Tunes_43\Tunes_43.csproj">

@@ -38,7 +38,7 @@ namespace ilift.Controller
         public override void init()
         {
             //display.WPFWindow.UpdateLayout(); //TODO do we need this ?
-            
+            Font font = Resources.GetFont(Resources.FontResources.welcome_font);
             //first welcome label on the screen 
             _welcomeLabel = new Text(GUIConstants.FONT, WELCOME_TEXT + stateManager.GetSession().User.username);
             _welcomeLabel.ForeColor = Gadgeteer.Color.Black;
@@ -48,10 +48,10 @@ namespace ilift.Controller
             Canvas.SetLeft(_welcomeLabel, 100);
 
             // the same thing for the second message
-            _scanAnEquipmentLabel = new Text(GUIConstants.FONT, SCAN_AN_EQUIPMENT_TEXT);
+            _scanAnEquipmentLabel = new Text(font, SCAN_AN_EQUIPMENT_TEXT);
             _scanAnEquipmentLabel.ForeColor = Gadgeteer.Color.Red;
             Canvas.SetTop(_scanAnEquipmentLabel, 100);
-            Canvas.SetLeft(_scanAnEquipmentLabel, 100);
+            Canvas.SetLeft(_scanAnEquipmentLabel, 70);
 
             canvas.Children.Add(_welcomeLabel);
             canvas.Children.Add(_scanAnEquipmentLabel);
