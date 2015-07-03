@@ -103,14 +103,13 @@ namespace ilift.Controller
             _cancelButton = new ParameterizedRectangle(bigButtonWidth, buttonHeight);
             _cancelButton.Fill = new SolidColorBrush(GUIConstants.SPECIAL_BUTTON_COLOR);
 
-            _cancelButton.SetMargin(GUIConstants.DEFAULT_MARGIN);
             Canvas.SetTop(_cancelButton, startY + 2 * (buttonHeight + GUIConstants.DEFAULT_SPACING));
-            Canvas.SetLeft(_cancelButton, startX);
+            Canvas.SetLeft(_cancelButton, display.Width / 2 - (bigButtonWidth / 2));
 
             _cancelLabel = new Text(GUIConstants.FONT, CANCEL_TEXT);
             _cancelLabel.ForeColor = GUIConstants.TEXT_COLOR;
             Canvas.SetTop(_cancelLabel, startY + buttonHeight / 2 +
-                2 * (buttonHeight + GUIConstants.DEFAULT_SPACING));
+                2 * (buttonHeight + GUIConstants.DEFAULT_SPACING) - GUIConstants.DEFAULT_MARGIN);
             Canvas.SetLeft(_cancelLabel, startX + GUIConstants.LOWER_BUTTON_LABEL_OFFSET);
 
             _cancelButton.TouchDown += OnCancelClicked;

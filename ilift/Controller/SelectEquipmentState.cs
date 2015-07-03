@@ -65,14 +65,13 @@ namespace ilift.Controller
             _logoutButton = new ParameterizedRectangle(bigButtonWidth, buttonHeight);
             _logoutButton.Fill = new SolidColorBrush(GUIConstants.SPECIAL_BUTTON_COLOR);
 
-            _logoutButton.SetMargin(GUIConstants.DEFAULT_MARGIN);
             Canvas.SetTop(_logoutButton, startY + 2 * (buttonHeight + GUIConstants.DEFAULT_SPACING));
-            Canvas.SetLeft(_logoutButton, GUIConstants.LEFT_OFFSET);
+            Canvas.SetLeft(_logoutButton, display.Width / 2 - (bigButtonWidth / 2));
 
             _logoutLabel = new Text(GUIConstants.FONT, LOGOUT_TEXT);
             _logoutLabel.ForeColor = GUIConstants.TEXT_COLOR;
             Canvas.SetTop(_logoutLabel, startY + buttonHeight / 2 +
-                2 * (buttonHeight + GUIConstants.DEFAULT_SPACING));
+                2 * (buttonHeight + GUIConstants.DEFAULT_SPACING) - GUIConstants.DEFAULT_MARGIN);
             Canvas.SetLeft(_logoutLabel, GUIConstants.LEFT_OFFSET + GUIConstants.LOWER_BUTTON_LABEL_OFFSET);
 
             _logoutButton.TouchDown += OnLogoutClicked;

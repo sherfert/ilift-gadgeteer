@@ -49,6 +49,7 @@ namespace ilift.Controller
             int buttonHeight = (int)(display.Height * 0.15);
             int startY = 2 * buttonHeight;
             int startX = LEFT_OFFSET;
+            int bigButtonWidth = (int)(display.Width * GUIConstants.BIG_BUTTON_WIDTH_PERCENTAGE);
             
             Font font = Resources.GetFont(Resources.FontResources.NinaB);
             
@@ -70,14 +71,13 @@ namespace ilift.Controller
             _doneButton = new ParameterizedRectangle(2 * buttonWidth + SPACING, buttonHeight);
             _doneButton.Fill = new SolidColorBrush(DONE_BUTTON_COLOR);
 
-           _doneButton.SetMargin(GUI.GUIConstants.DEFAULT_MARGIN);
             Canvas.SetTop(_doneButton, startY + 2 * (buttonHeight + SPACING));
-            Canvas.SetLeft(_doneButton, startX);
+            Canvas.SetLeft(_doneButton, display.Width / 2 - (bigButtonWidth / 2));
 
             _doneLabel = new Text(font, DONE_TEXT);
             _doneLabel.ForeColor = Gadgeteer.Color.Black;
             Canvas.SetTop(_doneLabel, startY + buttonHeight / 2 +
-                2 * (buttonHeight + SPACING));
+                2 * (buttonHeight + SPACING) - GUIConstants.DEFAULT_MARGIN);
             Canvas.SetLeft(_doneLabel, startX + DONE_LABEL_OFFSET);
 
             _doneButton.TouchDown += OnDoneClicked;
