@@ -137,9 +137,14 @@ A \texttt{ComplexPattern} represents a complete exercise made up by different \t
 
 The server is written in Java and provides a simple RESTful HTTP interface. The libraries used are \texttt{jersey} to provide the web services, \texttt{gson} to serialize and deserialize objects, \texttt{eclipselink} as an ORM and \texttt{h2} as a SQL implementation to create and access databases.
 
-The package \texttt{application} provides a main class, \texttt{services} contains classes to provide the different web services, \texttt{persistence} provides access to the database and a method in \texttt{DataManager} to insert some default data into the database, that we are using, and \texttt{data} contains our data model, where classes have JPA annotations so they can be stored in a database.
+The package \texttt{application} provides a main class, \texttt{services} contains classes to provide the different web services, \texttt{persistence} provides access to the database and a method in \texttt{DataManager} to insert some default data into the database, that we are using, and \texttt{data} contains our data model, where classes have JPA annotations so they can be stored in a database. Figure \ref{fig_data_model} shows a UML class diagram of our data model.
 
-%TODO include UML class diagram of the data model.
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.6\textwidth]{img/Ilift_model_uml}
+\caption{The data model. \texttt{EqType} is the a type of equipment and \texttt{Equipment} are actual pieces of equipment of a certain type that have a weight and an RFID tag. For each equipment type there are \texttt{Exercise}s that can be done with them. A \texttt{Session} is a training unit with an \texttt{Exercise} performed by a \texttt{User}, with an \texttt{Equipment}. \texttt{User}s also have RFID tags and a username.}
+\label{fig_data_model}
+\end{figure*}
 
 \subsection{Web client}
 
