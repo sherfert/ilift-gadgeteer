@@ -115,8 +115,9 @@
     <Reference Include="GTM.GHIElectronics.RFIDReader, Version=4.3.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="GTM.GHIElectronics.Tunes, Version=4.3.6.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="GTM.GHIElectronics.Tunes, Version=4.3.7.9, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\GTM.GHIElectronics.Tunes.dll</HintPath>
     </Reference>
     <Reference Include="GTM.GHIElectronics.WiFiRS21, Version=4.3.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -153,11 +154,5 @@
     <None Include="Resources\NinaB.tinyfnt" />
     <None Include="Resources\small.tinyfnt" />
     <None Include="Resources\welcome_font.tinyfnt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\GHI_Modules\Tunes\Tunes_43\Tunes_43.csproj">
-      <Project>{248D4928-2E90-48F4-A05A-2153C8C4962D}</Project>
-      <Name>Tunes_43</Name>
-    </ProjectReference>
   </ItemGroup>
 </Project>

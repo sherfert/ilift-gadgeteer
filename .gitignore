@@ -1,4 +1,4 @@
-ilift/bin/*
-ilift/obj/*
+bin/
+obj/
 *.user
 *.suo
