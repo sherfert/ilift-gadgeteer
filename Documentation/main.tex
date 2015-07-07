@@ -45,19 +45,19 @@ After each training set, a short summary will be presented to the user, informin
 
 \begin{figure*}[!t]
 \centering
-\subfloat[Welcome screen]{\includegraphics[width=2.0in]{img/sth}%
+\subfloat[Welcome screen]{\includegraphics[width=2.0in]{img/1welcome}%
 \label{fig_screen_welcome}}
 \hfil
-\subfloat[Select equipment screen]{\includegraphics[width=2.0in]{img/sth}%
+\subfloat[Select equipment screen]{\includegraphics[width=2.0in]{img/2choose_equip}%
 \label{fig_screen_select_equipment}}
 \hfil
-\subfloat[Select exercise screen]{\includegraphics[width=2.0in]{img/sth}%
+\subfloat[Select exercise screen]{\includegraphics[width=2.0in]{img/3choose_exec}%
 \label{fig_screen_select_exercise}}
 \\
-\subfloat[Start exercise screen]{\includegraphics[width=2.0in]{img/sth}%
+\subfloat[Start exercise screen]{\includegraphics[width=2.0in]{img/4start}%
 \label{fig_screen_start_exercise}}
 \hfil
-\subfloat[Execute exercise screen]{\includegraphics[width=2.0in]{img/sth}%
+\subfloat[Execute exercise screen]{\includegraphics[width=2.0in]{img/5exec}%
 \label{fig_screen_execute_exercise}}
 \hfil
 \subfloat[Summany Screen]{\includegraphics[width=2.0in]{img/sth}%
@@ -71,9 +71,10 @@ Finally, the user can continue and perform more exercises and log out from the s
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{img/sth}
-\caption{Screenshot from the web interface. %TODO explain
+\includegraphics[width=\textwidth]{img/web_client_ilift}
+\caption{Screenshot from the interface of the web client. On the upper part we present two charts: a doughnut chart representing the proportions of sessions for each exercise and a line chart representing the progress in the last five session of a selected exercise. On the lower part we present a table with the detailed information of each session.
 }
+\vspace{1EM}
 \label{fig_web_screenshot}
 \end{figure*}
 
@@ -92,8 +93,8 @@ The components that play together to build our application are:
 Both the Gadgeteer and the web client access the server that offers a HTTP RESTful interface. The Gadgeteer requests data of available exercises  and uploads the session information. The web client requests this information and displays it in a table and graphically.
 
 \subsection{.NET Gadgeteer}
-%TODO rephrase
-.NET Gadgeteer as mentioned it is used as a bracelet during the workout session, being so it consists of several components both hardware wise so as software wise. 
+
+We are first going to describe what hardware components we use to what ends and then we elaborate on out software architecture.
 
 \subsubsection{Hardware Components}
 
@@ -118,7 +119,7 @@ Every state is an \texttt{ExecutionState} so it contains an \texttt{init()} and 
 
 \item[GUI] contains two different classes. One of them is used for holding some global constants that are used from different states for painting GUI related things. The other class, \texttt{ParameterizedRectangle}, adds behavior to the existing Rectangle class provided by the .NET Gadgeeter library. The only behavior it adds is the possibility to attach data to a GUI Rectangle; so that every time we paint a rectangle, that always represent buttons in our case, we also associate different relevant data.
 
-\item[Model] represents the data model of the whole application. See the Entity Relationship Diagram. %TODO reference
+\item[Model] represents the data model of the whole application. See the Entity Relationship Diagram (figure \ref{fig_data_model}).
 
 \item[Network] contains the \texttt{NetworkClient} that has the responsibility of connecting to the WiFi network and also encapsulates all the REST invocations that are needed by the .NET Gadgeeter which are: 
 \begin{itemize}
@@ -129,18 +130,46 @@ Every state is an \texttt{ExecutionState} so it contains an \texttt{init()} and 
 
 \item[Patterns] package contains the most critical part of our solution. Here we process the data that we get from the accelerometer sensor. The most important classes here are \texttt{IActionPattern} and \texttt{ComplexPattern}. The first one defines an interface that contains an event \texttt{onActionDone} and a method \texttt{processAcel(double x, double y, double z)}. The idea behind this interface is that it represents the logical controller when the user starts performing an exercise. Whenever the user is ready and the sensor is calibrated, based on what exercise they have selected we pass the sensor data to the \texttt{processAcel(...)} method of the current instance. Before doing so; first we subscribe to the \texttt{onActionDone} event of that current instance. This event is fired inside the \texttt{processAcel(...)} after some validations are done based on the exercise and the thresholds related to it.
 
-A \texttt{ComplexPattern} represents a complete exercise made up by different \texttt{IActionPattern}s. The \texttt{ComplexPattern} itself implements the \texttt{IActionPattern} and also contains different \texttt{IActionPattern}s instances. For instance the \texttt{BicepCurl} exercise is a \texttt{ComplexPatern} that contains two different \texttt{IActionPatterns}: \texttt{CurlUpPattern} and \texttt{CurlDownPattern}. We pass the data to the \texttt{BicepCurl} and then the \texttt{BicepCurl} passes internally to the different patterns it contains. We also created another interface that represents an exercise in terms of more meaningful information, abstracting from processing sensor data and the internal way of detecting a pattern. This interface is called \texttt{AbstractExercise} and offers possibilities to start and stop an exercise; to subscribe to the \texttt{onRepetitionDone} event, which is fired every time a complete repetition of that exercise is performed, and other functionalities in the Exercise level of abstraction.
+A \texttt{ComplexPattern} represents a complete exercise made up by different \texttt{IActionPattern}s. The \texttt{ComplexPattern} itself implements the \texttt{IActionPattern} and also contains different \texttt{IActionPattern}s instances. For instance the \texttt{BicepCurl} exercise is a \texttt{ComplexPatern} that contains two different \texttt{IActionPatterns}: \texttt{CurlUpPattern} and \texttt{CurlDownPattern}. We pass the data to the \texttt{BicepCurl} and then the \texttt{BicepCurl} passes internally to the different patterns it contains. We also created another interface that represents an exercise in terms of more meaningful information, abstracting from processing sensor data and the internal way of detecting a pattern. This interface is called \texttt{AbstractExercise} and offers possibilities to start and stop an exercise; to subscribe to the \texttt{onRepetitionDone} event, which is fired every time a complete repetition of that exercise is performed, and other functionalities in the Exercise level of abstraction. The relations of the central classes in this package can be seen in figure \ref{fig_pattern_model}.
 \end{description}
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.6\textwidth]{img/Ilift_pattern_uml}
+\caption{UML class diagram of the pattern package. \texttt{IActionPattern} is an interface for any patterns, and \texttt{ComplexPattern} is a composite of (simple) patterns, like \texttt{CurlUpPattern} or \texttt{CurlDownPattern}. The class \texttt{AbstractExercise} manages one complex pattern and actual exercises, like \texttt{BicpCurl} extend from it. Not all the actual patterns and exercises are displayed.}
+\label{fig_pattern_model}
+\end{figure*}
 
 \subsection{Web server}
 
 The server is written in Java and provides a simple RESTful HTTP interface. The libraries used are \texttt{jersey} to provide the web services, \texttt{gson} to serialize and deserialize objects, \texttt{eclipselink} as an ORM and \texttt{h2} as a SQL implementation to create and access databases.
 
-The package \texttt{application} provides a main class, \texttt{services} contains classes to provide the different web services, \texttt{persistence} provides access to the database and a method in \texttt{DataManager} to insert some default data into the database, that we are using, and \texttt{data} contains our data model, where classes have JPA annotations so they can be stored in a database.
+The package \texttt{application} provides a main class, \texttt{services} contains classes to provide the different web services, \texttt{persistence} provides access to the database and a method in \texttt{DataManager} to insert some default data into the database, that we are using, and \texttt{data} contains our data model, where classes have JPA annotations so they can be stored in a database. Figure \ref{fig_data_model} shows a UML class diagram of our data model.
 
-%TODO include UML class diagram of the data model.
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.6\textwidth]{img/Ilift_model_uml}
+\caption{The data model. \texttt{EqType} is the a type of equipment and \texttt{Equipment} are actual pieces of equipment of a certain type that have a weight and an RFID tag. For each equipment type there are \texttt{Exercise}s that can be done with them. A \texttt{Session} is a training unit with an \texttt{Exercise} performed by a \texttt{User}, with an \texttt{Equipment}. \texttt{User}s also have RFID tags and a username.}
+\label{fig_data_model}
+\end{figure*}
 
 \subsection{Web client}
 
+The idea behind this web client was to demonstrate how several systems can interconnect and also to show the interesting features that could be developed using the information generated by the .NET Gadgeteer application. 
+
+The web client consists of an HTML template styled with twitter bootstrap and with additional dynamic behavior using Javascript, specifically jQuery 2.1.4 to facilitate the connection to the web services via Ajax and to manipulate the DOM. Also the library Chart.js was used to plot different charts and graphs. 
+
+The web services are provided by the web server and are the source of the information that is displayed in the client. Here we present a list of the web services consumed by the client:
+
+\begin{itemize}
+	\item Get User by Username
+	\item Get All Exercises
+	\item Get Data for Doughnut Chart
+	\item Get Data for Line Chart
+\end{itemize}
+
+Initially, when the web client is executed, a list of all the available exercises is requested. With this information we could manipulate the the line chart later on. Afterwards, the user is asked to input ``username'' in order to fetch its information. If the provided information corresponds to an existing user then all the information from that user is retrieved, including all its sessions. The information for plotting the doughnut and the line charts is also requested if the submitted information was valid.
+
+We create a table using the information of the retrieved sessions. The date of execution, exercise, equipment, weight, total repetitions and quality of performance are displayed for every session in chronological order starting from the most recent. Furthermore, two charts are plotted: the first is a doughnut chart depicting the fraction of sessions corresponding for each exercise. The second is a line chart associated with a selected exercise chosen from a drop down list built with the exercises list fetched earlier. The idea behind this last chart is to show the performance, measured in total repetitions, of the last five sessions of the selected exercise.
 
 \end{document}
