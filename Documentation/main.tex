@@ -78,8 +78,6 @@ Finally, the user can continue and perform more exercises and log out from the s
 \label{fig_web_screenshot}
 \end{figure*}
 
-%TODO Ilmi must upload Tunes43 reference project
-
 \section{Implementation}
 
 First, we are going to describe what components make up our system and how they interact. Then we are describing each component in an own sub-section.
@@ -135,11 +133,10 @@ Every state is an \texttt{ExecutionState} so it contains an \texttt{init()} and 
 A \texttt{ComplexPattern} represents a complete exercise made up by different \texttt{IActionPattern}s. The \texttt{ComplexPattern} itself implements the \texttt{IActionPattern} and also contains different \texttt{IActionPattern}s instances. For instance the \texttt{BicepCurl} exercise is a \texttt{ComplexPatern} that contains two different \texttt{IActionPatterns}: \texttt{CurlUpPattern} and \texttt{CurlDownPattern}. We pass the data to the \texttt{BicepCurl} and then the \texttt{BicepCurl} passes internally to the different patterns it contains. We also created another interface that represents an exercise in terms of more meaningful information, abstracting from processing sensor data and the internal way of detecting a pattern. This interface is called \texttt{AbstractExercise} and offers possibilities to start and stop an exercise; to subscribe to the \texttt{onRepetitionDone} event, which is fired every time a complete repetition of that exercise is performed, and other functionalities in the Exercise level of abstraction. The relations of the central classes in this package can be seen in figure \ref{fig_pattern_model}.
 \end{description}
 
-%TODO include AbstractExercise class
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.6\textwidth]{img/Ilift_pattern_uml}
-\caption{UML class diagram of the pattern package. Not all the actual patterns are displayed.}
+\caption{UML class diagram of the pattern package. \texttt{IActionPattern} is an interface for any patterns, and \texttt{ComplexPattern} is a composite of (simple) patterns, like \texttt{CurlUpPattern} or \texttt{CurlDownPattern}. The class \texttt{AbstractExercise} manages one complex pattern and actual exercises, like \texttt{BicpCurl} extend from it. Not all the actual patterns and exercises are displayed.}
 \label{fig_pattern_model}
 \end{figure*}
 
@@ -162,7 +159,7 @@ The idea behind this web client was to demonstrate how several systems can inter
 
 The web client consists of an HTML template styled with twitter bootstrap and with additional dynamic behavior using Javascript, specifically jQuery 2.1.4 to facilitate the connection to the web services via Ajax and to manipulate the DOM. Also the library Chart.js was used to plot different charts and graphs. 
 
-The web services are provided also by the web server and are the source of the information that is displayed in the client. Here we present a list of the web services consumed by the client:
+The web services are provided by the web server and are the source of the information that is displayed in the client. Here we present a list of the web services consumed by the client:
 
 \begin{itemize}
 	\item Get User by Username
