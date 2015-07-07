@@ -7,8 +7,8 @@ namespace ilift.Patterns
     {
         //Hardcoded values of the pattern, for position and constraint
        
-        private const double X_POSITION = -0.4;
-        private const double Y_POSITION = -0.3;
+        private const double X_POSITION = -0.1;
+        private const double Y_POSITION = -0.1;
         private const double Z_POSITION = 1.2;
 
         /// <summary>

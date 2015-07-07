@@ -6,9 +6,9 @@ namespace ilift.Patterns
     public class TricepExtensionDownPattern : IActionPattern
     {
         //Hardcoded values of the pattern, for position and constraint
-        private const double X_POSITION = 0.1;
+        private const double X_POSITION = 0.2;
         private const double Y_POSITION = -0.05;
-        private const double Z_POSITION = 0.9;
+        private const double Z_POSITION = 0.8;
 
         /// <summary>
         /// fired when pattern is recognised
