@@ -13,11 +13,13 @@ namespace ilift.Controller
     {
 
         public const string MESSAGE = "Session finished!";
-        public const string SUMMARY_START_TEXT = "You did: ";
+        public const string SUMMARY_START_TEXT = "You did:";
+       
         public const string CONTINUE_BUTTON_TEXT = "Continue";
 
         private Text _messageLabel;
         private Text _summaryLabel;
+        private Text _summaryStartLabel;
 
         private ParameterizedRectangle _continueButton;
         private Text _continueLabel;
@@ -42,20 +44,26 @@ namespace ilift.Controller
             Canvas.SetLeft(_messageLabel, 25);
 
             StringBuilder sb = new StringBuilder();
-            sb.Append(SUMMARY_START_TEXT);
-            sb.Append("\n");
             sb.Append(stateManager.GetSession().Repetitions + stateManager.GetSession().BadRepetitions).Append(" ");
             sb.Append(stateManager.GetSession().Exercise.Name).Append(", ");
             sb.Append(stateManager.GetSession().Equipment.Type.Name).Append(", ");
             sb.Append(stateManager.GetSession().Equipment.WeightKg).Append(" kg.");
+
+
+            _summaryStartLabel = new Text(GUIConstants.FONT, SUMMARY_START_TEXT);
+            _summaryStartLabel.ForeColor = Gadgeteer.Color.Green;
+            Canvas.SetTop(_summaryStartLabel, 100);
+            Canvas.SetLeft(_summaryStartLabel, 25);
             
             _summaryLabel = new Text(GUIConstants.FONT, sb.ToString());
             _summaryLabel.ForeColor = Gadgeteer.Color.Green;
-            Canvas.SetTop(_summaryLabel, 100);
+            Canvas.SetTop(_summaryLabel, 120);
             Canvas.SetLeft(_summaryLabel, 25);
+
 
             canvas.Children.Add(_messageLabel);
             canvas.Children.Add(_summaryLabel);
+            canvas.Children.Add(_summaryStartLabel);
 
 
             int buttonHeight = (int)(display.Height * GUIConstants.HEIGHT_PERCENTAGE);
