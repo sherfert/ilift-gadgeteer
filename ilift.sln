@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ilift", "ilift\ilift.csproj", "{5E2A749B-2EFE-477D-87C3-301397DFF3F9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{62911B91-315E-4333-81DC-FC546690245F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tunes_43", "..\GHI_Modules\Tunes\Tunes_43\Tunes_43.csproj", "{248D4928-2E90-48F4-A05A-2153C8C4962D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tunes_43", "GHI_Modules\Tunes\Tunes_43\Tunes_43.csproj", "{248D4928-2E90-48F4-A05A-2153C8C4962D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
