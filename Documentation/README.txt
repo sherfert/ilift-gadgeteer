@@ -4,7 +4,7 @@ In this readme file are contained all the neccessary steps for our application t
 
 1. Starting the REST Service
 	
-	1.1 Go to the /ilift-webservice directory and execute the following command:
+	1.1 Go to the /ilift-webservices directory, where you can find an eclipse projcet, and execute the following command:
 
 		mvn clean compile assembly:single
 
@@ -20,9 +20,13 @@ In this readme file are contained all the neccessary steps for our application t
 
 	2.1 Update the IP address in /ilift-webclient/config.js accordingly with the IP address where your web service is listening. 
 
-	2.2 Open index.html file.
+	2.2 Open ilift.html file.
 
 3. .NET Gadgeeter 
 
-	3.1 The only thing that needs to be configured are the network parameters that you can find them 
+	3.1 You can find the .NET Gadgeteer solution inside the /ilift-gadgeteer folder. 
+
+	3.2 The only thing that needs to be configured are the network parameters that you can find 
 	in the NetworkClient class in the Network package and then you can deploy the application
+
+	3.3 Finally you can deploy it in the Gadgeteer hardware.
